@@ -1,6 +1,6 @@
 #pragma once
 #include <inttypes.h>
-namespace quartz
+namespace crystal
 {
     struct RGBA
     {

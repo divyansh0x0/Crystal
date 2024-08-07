@@ -12,5 +12,4 @@ namespace logger
     void error(std::string s);
     void success(const char * s);
     void success(std::string s);
-
 }

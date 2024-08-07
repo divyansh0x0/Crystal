@@ -1,6 +1,6 @@
 OUT := build
 #lists all .c files in src directory
-SRC_FILES := $(wildcard crystal/*.cpp) $(wildcard crystal/util/*.cpp) $(wildcard crystal/core/*.cpp) $(wildcard crystal/ui/*.cpp)
+SRC_FILES := $(wildcard crystal/src/*.cpp) $(wildcard crystal/src/util/*.cpp) $(wildcard crystal/src/core/*.cpp)  $(wildcard crystal/src/core/geometry/*.cpp) $(wildcard crystal/src/ui/*.cpp)
 #$(VARIABLE:OLD_SUFFIX=NEW_SUFFIX) changes extension of all .c files to .obj
 #creates object file names from .cpp file names and stores them
 O_FILES = $(addprefix $(OUT)/,$(notdir $(SRC_FILES:.cpp=.obj)))
@@ -8,7 +8,7 @@ NAME := $(OUT)/crystal
 CXX := g++
 C := gcc
 
-PROJECT_INCLUDE_FILES := crystal/
+PROJECT_INCLUDE_FILES := crystal/include/
 
 EXTERNAL_INCLUDE_FILES := include
 # LIB := ../MUI/lib
