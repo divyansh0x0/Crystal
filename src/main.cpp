@@ -16,16 +16,16 @@ int main() {
 
     // logger::success(m3.toString());
 
-    crystal::geometry::Vector3 v1 = crystal::geometry::Vector3(0, 1, 0);
-    crystal::geometry::Vector2 v2 = crystal::geometry::Vector2(1, 0);
+    // crystal::geometry::Vector3 v1 = crystal::geometry::Vector3(0, 1, 0);
+    // crystal::geometry::Vector2 v2 = crystal::geometry::Vector2(1, 0);
 
-    logger::success((v1*v2).toString());
-    logger::success((v1/32).toString());
-    logger::success(std::to_string(v1.magnitude()));
-    logger::success(std::to_string(v1.magnitude()));
-    logger::success(std::to_string(v1.magnitude()));
-    logger::success(std::to_string(v1.magnitude()));
-    logger::success(std::to_string(v1.magnitude()));
+    // logger::success((v1*v2).toString());
+    // logger::success((v1/32).toString());
+    // logger::success(std::to_string(v1.magnitude()));
+    // logger::success(std::to_string(v1.magnitude()));
+    // logger::success(std::to_string(v1.magnitude()));
+    // logger::success(std::to_string(v1.magnitude()));
+    // logger::success(std::to_string(v1.magnitude()));
 
 
 

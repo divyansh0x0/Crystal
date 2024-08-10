@@ -1,6 +1,7 @@
 OUT := build
 #lists all .c files in src directory
-SRC_FILES := $(wildcard crystal/src/*.cpp) $(wildcard crystal/src/util/*.cpp) $(wildcard crystal/src/core/*.cpp)  $(wildcard crystal/src/core/geometry/*.cpp) $(wildcard crystal/src/ui/*.cpp)
+SOURCE_DIRECTORY = src
+SRC_FILES := $(wildcard ${SOURCE_DIRECTORY}/*.cpp) $(wildcard ${SOURCE_DIRECTORY}/util/*.cpp) $(wildcard ${SOURCE_DIRECTORY}/core/*.cpp)  $(wildcard ${SOURCE_DIRECTORY}/core/geometry/*.cpp) $(wildcard ${SOURCE_DIRECTORY}/ui/*.cpp)
 #$(VARIABLE:OLD_SUFFIX=NEW_SUFFIX) changes extension of all .c files to .obj
 #creates object file names from .cpp file names and stores them
 O_FILES = $(addprefix $(OUT)/,$(notdir $(SRC_FILES:.cpp=.obj)))
@@ -8,26 +9,31 @@ NAME := $(OUT)/crystal
 CXX := g++
 C := gcc
 
-PROJECT_INCLUDE_FILES := crystal/include/
+PROJECT_INCLUDE_FILES := include/
 
-EXTERNAL_INCLUDE_FILES := include
+EXTERNAL_INCLUDE_FILES := external/include
 # LIB := ../MUI/lib
-EXTERNAL_LIBS := lib
+EXTERNAL_LIBS := external/lib
 
 COMPILATION_ARGS = -pedantic -Wall -Wlogical-op -Wmissing-include-dirs -Werror -Wno-unused
 CFLAGS := -g -I$(EXTERNAL_INCLUDE_FILES) -I$(PROJECT_INCLUDE_FILES)
 
 LIBS_SRC := -L $(EXTERNAL_LIBS) 
 
+EXEC_SUFFIX := .exe
+
 ifeq ($(OS),Windows_NT)
     # Windows settings
-    LINKER_FLAGS := -w -lglfw3 -lgdi32  -lopengl32 -lfreeglut
+	EXEC_SUFFIX := .exe
+    LINKER_FLAGS := -w -lglfw3 -lgdi32  -lopengl32
 else
     # Assume Linux settings
-    LINKER_FLAGS := -w -lglfw3  -lopengl32 -lfreeglut
+    LINKER_FLAGS := -w -lglfw3  -lopengl32 
+	EXEC_SUFFIX := 
 endif
 
 
+EXECUTABLE_NAME := $(NAME)$(EXEC_SUFFIX)
 
 FRAG_SHADERS_SRC = $(wildcard shaders/*.frag) 
 VERT_SHADERS_SRC = $(wildcard shaders/*.vert)
@@ -53,12 +59,6 @@ $(SHADER_OUT)/%$(COMPILED_SHADER_EXTENSION): %.frag
 
 
 
-build: $(NAME) $(SPIRV_FILES)
-	@echo --------------------------------------- EXECUTING $(NAME).exe ------------------------------------------------------------
-	$(NAME).exe
-
-	
-
 
 #build objects	
 vpath %.cpp $(dir $(SRC_FILES))
@@ -67,13 +67,23 @@ $(OUT)/%.obj: %.cpp
 	@echo [CREATING] $@ file from $<
 	$(CXX) $(CFLAGS) $(COMPILATION_ARGS) -c $< -o $@ 
 	
-
-
-#build exe
+#build executable
 $(NAME) : $(O_FILES)
 	@echo --------------------------------------- BUILDING EXECUTABLE ------------------------------------------------------------
-# @echo $(CXX) -o $(NAME) $(addprefix $(OUT)/,$(notdir $(O_FILES))) $(LIBS_SRC) $(LINKER_FLAGS)
 	$(CXX) -o $(NAME) $(O_FILES) $(LIBS_SRC) $(LINKER_FLAGS)
+
+
+
+	
+run: build
+	@echo --------------------------------------- EXECUTING $(NAME).exe ------------------------------------------------------------
+	$(EXECUTABLE_NAME)
+
+
+
+build: $(NAME) $(SPIRV_FILES)
+	@echo --------------------------------------- BUILD SUCCESSFUL ------------------------------------------------------------
+
 
 
 debug:$(NAME)
@@ -82,4 +92,4 @@ debug:$(NAME)
 
 
 
-.PHONY:  build, debug, shaders
+.PHONY: run build debug shaders

@@ -13,7 +13,7 @@ namespace crystal::geometry
     {
         private:
             // Array representation of the matrix
-            std::vector<std::vector<double>> array;
+            std::vector<std::vector<float>> array;
             // Number of rows in the matrix
             size_t num_rows;
             // Number of columns in the matrix
@@ -34,14 +34,14 @@ namespace crystal::geometry
              * @brief Constructor for Matrix.
              * @param arr Array representation of the matrix.
              */
-            Matrix(const std::vector<std::vector<double>>& arr);
+            Matrix(const std::vector<std::vector<float>>& arr);
             /**
              * @brief Constructor for Matrix.
              * @param row Number of rows in the matrix.
              * @param col Number of columns in the matrix.
              * @param val Value to fill the matrix with.
              */
-            Matrix(size_t row,size_t col, double val);
+            Matrix(size_t row,size_t col, float val);
 
             /**
              * @brief Matrix multiplication.
@@ -60,25 +60,25 @@ namespace crystal::geometry
              * @param scalar Value to multiply the matrix with.
              * @return New matrix after multiplication.
              */
-            Matrix operator *(const double& scalar) const;
+            Matrix operator *(const float& scalar) const;
             /**
              * @brief Scalar matrix multiplication assignment.
              * @param scalar Value to multiply the matrix with.
              * @return Reference to the current matrix.
              */
-            Matrix& operator *=(const double& scalar);
+            Matrix& operator *=(const float& scalar);
             /**
              * @brief Scalar matrix division.
              * @param scalar Value to divide the matrix with.
              * @return New matrix after multiplication.
              */
-            Matrix operator /(const double& scalar) const;
+            Matrix operator /(const float& scalar) const;
             /**
              * @brief Scalar matrix division assignment.
              * @param scalar Value to divide the matrix with.
              * @return Reference to the current matrix.
              */
-            Matrix& operator /=(const double& scalar);
+            Matrix& operator /=(const float& scalar);
 
             /**
              * @brief Matrix addition.
@@ -144,7 +144,7 @@ namespace crystal::geometry
              * @brief Get the array representation of the matrix.
              * @return Array representation of the matrix.
              */
-            std::vector<std::vector<double>> getMatrixArray();
+            std::vector<std::vector<float>> getMatrixArray();
 
             /**
              * @brief Get the transpose of the matrix.
@@ -160,7 +160,7 @@ namespace crystal::geometry
              * @brief Get the determinant of the matrix.
              * @return Determinant of the matrix.
              */
-            double getDeterminant() const;
+            float getDeterminant() const;
             /**
              * @brief Get the adjoint of the matrix.
              * @return Adjoint of the matrix.
@@ -175,12 +175,12 @@ namespace crystal::geometry
              * @brief Get the number of rows in the matrix.
              * @return Number of rows in the matrix.
              */
-            double at(size_t row, size_t col) const;
+            float at(size_t row, size_t col) const;
             /**
              * @brief Get the number of columns in the matrix.
              * @return Number of columns in the matrix.
              */
-            double getCofactor(size_t row, size_t col) const;
+            float getCofactor(size_t row, size_t col) const;
             /**
              * @brief Get the submatrix of the matrix.
              * @param row Row to remove from the matrix.

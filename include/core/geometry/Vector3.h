@@ -10,46 +10,46 @@ namespace crystal::geometry
     class Vector3
     {
     private:
-        double x;
-        double y;
-        double z;
-        mutable std::optional<double> cached_magnitude;
+        float x;
+        float y;
+        float z;
+        mutable std::optional<float> cached_magnitude;
     public:
 
-        Vector3(double x, double y, double z) : x(x), y(y), z(z) {}
+        Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
         Vector3(const Vector3 &other) : x(other.x), y(other.y), z(other.z) {}
-        Vector3(const std::vector<double> &arr) : x(arr[0]), y(arr[1]), z(arr[2]) {}
+        Vector3(const std::vector<float> &arr) : x(arr[0]), y(arr[1]), z(arr[2]) {}
         Vector3() : x(0), y(0), z(0) {}
 
         Vector3 operator+(const Vector3 &other) const;
         Vector3 &operator+=(const Vector3 &other);
         Vector3 operator-(const Vector3 &other) const;
         Vector3 &operator-=(const Vector3 &other);
-        Vector3 operator*(const double scalar) const;
-        Vector3 &operator*=(const double scalar);
+        Vector3 operator*(const float scalar) const;
+        Vector3 &operator*=(const float scalar);
         Vector3 operator*(const Vector3 &other) const;
         Vector3 &operator*=(const Vector3 &other);
-        Vector3 operator/(const double scalar) const;
-        Vector3 &operator/=(const double scalar);
+        Vector3 operator/(const float scalar) const;
+        Vector3 &operator/=(const float scalar);
         Vector3 &operator=(const Vector3 &other);
-        double operator[](const size_t index) const;
+        float operator[](const size_t index) const;
         bool operator==(const Vector3 &other) const;
         bool operator!=(const Vector3 &other) const;
 
-        double dot(const Vector3 &other) const;
+        float dot(const Vector3 &other) const;
         Vector3 cross(const Vector3 &other) const;
 
-        double magnitude() const;
-        double squaredMagnitude() const;
+        float magnitude() const;
+        float squaredMagnitude() const;
         Vector3 normalize() const;
-        double getAngle(const Vector3 &other) const;
-        double getDistance(const Vector3 &other) const;
-        double getDistanceSquared(const Vector3 &other) const;
+        float getAngle(const Vector3 &other) const;
+        float getDistance(const Vector3 &other) const;
+        float getDistanceSquared(const Vector3 &other) const;
 
 
-        double getX() const {return x;};
-        double getY() const {return y;};
-        double getZ() const {return z;};
+        float getX() const {return x;};
+        float getY() const {return y;};
+        float getZ() const {return z;};
         Matrix getColumnMatrix() const;
         std::string toString() const;
     };

@@ -4,7 +4,7 @@
 using namespace crystal::geometry;
 
 Matrix::Matrix(const Matrix &other) : array(other.array), num_rows(other.num_rows), num_cols(other.num_cols) {}
-Matrix::Matrix(const std::vector<std::vector<double>> &arr) : array(arr), num_rows(arr.size()), num_cols(arr[0].size())
+Matrix::Matrix(const std::vector<std::vector<float>> &arr) : array(arr), num_rows(arr.size()), num_cols(arr[0].size())
 {
 
     if (num_rows == 0 || num_cols == 0)
@@ -19,7 +19,7 @@ Matrix::Matrix(const std::vector<std::vector<double>> &arr) : array(arr), num_ro
         }
     }
 }
-Matrix::Matrix(size_t row, size_t col, double val) : array(row, std::vector<double>(col)), num_rows(row), num_cols(col)
+Matrix::Matrix(size_t row, size_t col, float val) : array(row, std::vector<float>(col)), num_rows(row), num_cols(col)
 {
     for (size_t i = 0; i < row; i++)
     {
@@ -42,7 +42,7 @@ Matrix::~Matrix()
 }
 Matrix Matrix::identity(size_t rows, size_t cols)
 {
-    std::vector<std::vector<double>> arr(rows, std::vector<double>(cols));
+    std::vector<std::vector<float>> arr(rows, std::vector<float>(cols));
     for (size_t i = 0; i < rows; i++)
     {
         for (size_t j = 0; j < cols; j++)
@@ -57,7 +57,7 @@ Matrix Matrix::identity(size_t rows, size_t cols)
 }
 Matrix Matrix::null(size_t rows, size_t cols)
 {
-    std::vector<std::vector<double>> arr(rows, std::vector<double>(cols, 0));
+    std::vector<std::vector<float>> arr(rows, std::vector<float>(cols, 0));
     return Matrix(arr);
 }
 Matrix Matrix::operator*(const Matrix &other) const
@@ -66,7 +66,7 @@ Matrix Matrix::operator*(const Matrix &other) const
     {
         throw std::runtime_error("Invalid matrix dimensions, cannot multiply matrices of dimensions " + std::to_string(this->num_rows) + "x" + std::to_string(this->num_cols) + " and " + std::to_string(other.num_rows) + "x" + std::to_string(other.num_cols));
     }
-    std::vector<std::vector<double>> result(num_rows, std::vector<double>(other.num_cols));
+    std::vector<std::vector<float>> result(num_rows, std::vector<float>(other.num_cols));
     for (size_t i = 0; i < num_rows; ++i)
     {
         for (size_t j = 0; j < other.num_cols; ++j)
@@ -86,9 +86,9 @@ Matrix &Matrix::operator*=(const Matrix &other)
     return *this;
 }
 // Scalar multiply
-Matrix Matrix::operator*(const double &scalar) const
+Matrix Matrix::operator*(const float &scalar) const
 {
-    std::vector<std::vector<double>> result(this->num_rows, std::vector<double>(this->num_cols, 0));
+    std::vector<std::vector<float>> result(this->num_rows, std::vector<float>(this->num_cols, 0));
 
     for (size_t i = 0; i < this->num_rows; i++)
     {
@@ -99,17 +99,17 @@ Matrix Matrix::operator*(const double &scalar) const
     }
     return Matrix(result);
 }
-Matrix &Matrix::operator*=(const double &scalar)
+Matrix &Matrix::operator*=(const float &scalar)
 {
     *this = *this * scalar;
     return *this;
 }
 // Scalar divison
-Matrix Matrix::operator/(const double &scalar) const
+Matrix Matrix::operator/(const float &scalar) const
 {
     return *this * (1 / scalar);
 }
-Matrix &Matrix::operator/=(const double &scalar)
+Matrix &Matrix::operator/=(const float &scalar)
 {
     *this = *this / scalar;
     return *this;
@@ -117,10 +117,10 @@ Matrix &Matrix::operator/=(const double &scalar)
 // Addition
 Matrix Matrix::operator+(const Matrix &other) const
 {
-    std::vector<std::vector<double>> result;
+    std::vector<std::vector<float>> result;
     for (size_t i = 0; i < this->num_rows; i++)
     {
-        std::vector<double> row;
+        std::vector<float> row;
         for (size_t j = 0; j < this->num_cols; j++)
         {
             row.push_back(this->array[i][j] + other.array[i][j]);
@@ -137,10 +137,10 @@ Matrix &Matrix::operator+=(const Matrix &other)
 // Subtraction
 Matrix Matrix::operator-(const Matrix &other) const
 {
-    std::vector<std::vector<double>> result;
+    std::vector<std::vector<float>> result;
     for (size_t i = 0; i < this->num_rows; i++)
     {
-        std::vector<double> row;
+        std::vector<float> row;
         for (size_t j = 0; j < this->num_cols; j++)
         {
             row.push_back(this->array[i][j] - other.array[i][j]);
@@ -217,14 +217,14 @@ Matrix &Matrix::operator=(const Matrix &other)
     return *this;
 }
 // at
-double Matrix::at(size_t row, size_t col) const
+float Matrix::at(size_t row, size_t col) const
 {
     return this->array[row][col];
 }
 // Transpose
 Matrix Matrix::getTranspose() const
 {
-    std::vector<std::vector<double>> result(this->num_cols, std::vector<double>(this->num_rows, 0));
+    std::vector<std::vector<float>> result(this->num_cols, std::vector<float>(this->num_rows, 0));
     for (size_t i = 0; i < this->num_rows; i++)
     {
         for (size_t j = 0; j < this->num_cols; j++)
@@ -235,7 +235,7 @@ Matrix Matrix::getTranspose() const
     return Matrix(result);
 }
 // Determinant
-double Matrix::getDeterminant() const
+float Matrix::getDeterminant() const
 {
     if (this->num_rows != this->num_cols)
         throw std::runtime_error("Determinant can only be calculated for square matrices");
@@ -244,7 +244,7 @@ double Matrix::getDeterminant() const
     if (this->num_rows == 2)
         return this->array[0][0] * this->array[1][1] - this->array[0][1] * this->array[1][0];
 
-    double result = 0;
+    float result = 0;
     for (size_t i = 0; i < this->num_cols; i++)
     {
         result += this->array[0][i] * this->getCofactor(0, i);
@@ -258,7 +258,7 @@ Matrix Matrix::getSubMatrix(size_t row, size_t col) const
 
     if (this->num_rows != this->num_cols)
         throw std::runtime_error("Submatrix can only be calculated for square matrices");
-    std::vector<std::vector<double>> result(this->num_rows - 1, std::vector<double>(this->num_cols - 1, 0));
+    std::vector<std::vector<float>> result(this->num_rows - 1, std::vector<float>(this->num_cols - 1, 0));
     for (size_t i = 0; i < this->num_rows; i++)
     {
         for (size_t j = 0; j < this->num_cols; j++)
@@ -273,7 +273,7 @@ Matrix Matrix::getSubMatrix(size_t row, size_t col) const
     return Matrix(result);
 }
 // Cofactor
-double Matrix::getCofactor(size_t row, size_t col) const
+float Matrix::getCofactor(size_t row, size_t col) const
 {
     if (this->num_rows != this->num_cols)
         throw std::runtime_error("Cofactor can only be calculated for square matrices");
@@ -284,7 +284,7 @@ double Matrix::getCofactor(size_t row, size_t col) const
 // Cofactor
 Matrix Matrix::getCofactorMatrix() const
 {
-    std::vector<std::vector<double>> result(this->num_rows, std::vector<double>(this->num_cols, 0));
+    std::vector<std::vector<float>> result(this->num_rows, std::vector<float>(this->num_cols, 0));
     for (size_t i = 0; i < this->num_rows; i++)
     {
         for (size_t j = 0; j < this->num_cols; j++)
@@ -303,7 +303,7 @@ Matrix Matrix::getAdjoint() const
 // Inverse
 Matrix Matrix::getInverse() const
 {
-    double determinant = this->getDeterminant();
+    float determinant = this->getDeterminant();
     if (determinant == 0)
     {
         throw std::runtime_error("Inverse can only be calculated for non-singular matrices (determinant of matrix should be non zero)");

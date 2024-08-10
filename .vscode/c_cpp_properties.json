@@ -4,7 +4,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/crystal/include",
+                "${workspaceFolder}/external/include",
                 "${workspaceFolder}/include"
             ],
             "defines": [

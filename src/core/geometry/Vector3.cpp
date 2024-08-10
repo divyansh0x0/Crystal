@@ -4,11 +4,11 @@
 #include<stdexcept>
 using namespace crystal::geometry;
 
-// Vector3::Vector3(double x, double y, double z) : x(x), y(y), z(z) {}
+// Vector3::Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
 
 // Vector3::Vector3(const Vector3 &other) : x(other.x), y(other.y), z(other.z) {}
 
-// Vector3::Vector3(const std::vector<double> &arr) : x(arr[0]), y(arr[1]), z(arr[2]) {}
+// Vector3::Vector3(const std::vector<float> &arr) : x(arr[0]), y(arr[1]), z(arr[2]) {}
 
 Vector3 Vector3::operator+(const Vector3 &other) const{
     return Vector3(x + other.x, y + other.y, z + other.z);
@@ -30,10 +30,10 @@ Vector3& Vector3::operator-=(const Vector3 &other){
     z -= other.z;
     return *this;
 }
-Vector3 Vector3::operator*(const double scalar) const{
+Vector3 Vector3::operator*(const float scalar) const{
     return Vector3(x * scalar, y * scalar, z * scalar);
 }
-Vector3& Vector3::operator*=(const double scalar){
+Vector3& Vector3::operator*=(const float scalar){
     x *= scalar;
     y *= scalar;
     z *= scalar;
@@ -41,7 +41,7 @@ Vector3& Vector3::operator*=(const double scalar){
 }   
 //array access
 
-double Vector3::operator[](const size_t index) const{
+float Vector3::operator[](const size_t index) const{
     switch(index){
         case 0: return x;
         case 1: return y;
@@ -61,10 +61,10 @@ Vector3& Vector3::operator*=(const Vector3 &other){
 
 
 
-Vector3 Vector3::operator/(const double scalar) const{
+Vector3 Vector3::operator/(const float scalar) const{
     return Vector3(x / scalar, y / scalar, z / scalar);
 }
-Vector3& Vector3::operator/=(const double scalar){
+Vector3& Vector3::operator/=(const float scalar){
     x /= scalar;
     y /= scalar;
     z /= scalar;
@@ -92,14 +92,14 @@ bool Vector3::operator!=(const Vector3 &other) const{
 
 
 
-double Vector3::dot(const Vector3 &other) const{
+float Vector3::dot(const Vector3 &other) const{
     return x * other.x + y * other.y + z * other.z;
 }
 Vector3 Vector3::cross(const Vector3 &other) const{
     return *this * other;
 }
 
-double Vector3::magnitude() const{
+float Vector3::magnitude() const{
     if (!cached_magnitude.has_value()) {
              cached_magnitude =std::sqrt(x * x + y * y + z * z);
 
@@ -107,8 +107,8 @@ double Vector3::magnitude() const{
     return cached_magnitude.value();
 }
 
-double Vector3::squaredMagnitude() const{
-    double mag = magnitude();
+float Vector3::squaredMagnitude() const{
+    float mag = magnitude();
     return mag * mag;
 }
 
@@ -117,19 +117,19 @@ Vector3 Vector3::normalize() const{
     return *this / magnitude();
 }
 
-double Vector3::getAngle(const Vector3 &other) const{
+float Vector3::getAngle(const Vector3 &other) const{
     return std::acos(dot(other) / (magnitude() * other.magnitude()));
 }
-double Vector3::getDistance(const Vector3 &other) const{
+float Vector3::getDistance(const Vector3 &other) const{
     return (other - *this).magnitude();
 }
 
-double Vector3::getDistanceSquared(const Vector3 &other) const{
+float Vector3::getDistanceSquared(const Vector3 &other) const{
     return (other - *this).squaredMagnitude();
 }
 
 Matrix Vector3::getColumnMatrix() const{
-    std::vector<std::vector<double>> arr = {{x, {y}, {z}}};
+    std::vector<std::vector<float>> arr = {{x, {y}, {z}}};
     return Matrix( arr);
 }
 

@@ -25,7 +25,6 @@ namespace crystal
         const uint32_t MAX_FPS = 120;
         uint32_t current_fps = 0;
         bool b_destroy_window_;
-        void render();
     public:
         bool b_vsync_ = false;
         Window(std::string name, crystal::Size size, crystal::Color background_color);
@@ -34,6 +33,9 @@ namespace crystal
         void destroyWindow();
         uint32_t getCurrentFPS();
         ~Window();
+    protected:
+        void render();
+        void init();
     };
 
 }
