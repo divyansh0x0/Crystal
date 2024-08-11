@@ -1,5 +1,7 @@
 #pragma once
-#include <core/Core.h>
+#include "glad/glad.h"
+#include "crystal/core/Color.h"
+#include "crystal/layout/Size.h"
 #include <GLFW/glfw3.h>
 #include <string>
 // #include<SDL2/SDL.h>

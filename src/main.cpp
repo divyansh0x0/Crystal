@@ -1,6 +1,6 @@
-#include <core/logger.h>
-#include <ui/window.h>
-#include <core/Core.h>
+#include "crystal/core/Core.h"
+#include "crystal/core/window.h"
+#include "crystal/layout/Size.h"
 crystal::Size window_size = crystal::Size(800, 600);
 
 int main() {
@@ -26,9 +26,6 @@ int main() {
     // logger::success(std::to_string(v1.magnitude()));
     // logger::success(std::to_string(v1.magnitude()));
     // logger::success(std::to_string(v1.magnitude()));
-
-
-
     window.loop();
     return 0;
 }

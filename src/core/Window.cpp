@@ -1,4 +1,7 @@
-#include <ui/window.h>
+#include "crystal/core/Window.h"
+#include "crystal/core/Logger.h"
+#include "crystal/core/Shader.h"
+
 #include <stdexcept>
 #include <chrono>
 #include <fstream>
@@ -31,53 +34,9 @@ static std::string DecodeGLError(GLint error)
 static void CheckGLError(){
     uint32_t result;
     while ((result = glGetError()) != GL_NO_ERROR)
-        logger::error(DecodeGLError(result));
+        logger::error("[OPENGL ERROR]" + DecodeGLError(result) + " in " + __FILE__ + ":" + std::to_string(__LINE__));
 }
-static std::string GetShaderCode(const std::string path)
-{
-    std::ifstream stream(path);
-    std::string line;
-    std::string code;
-    while (std::getline(stream, line))
-    {
-        code += line + "\n";
-    }
-    logger::success(code);
-    return code;
-}
-static unsigned int CompileShader(unsigned int type, const std::string file)
-{
-    std::string source = GetShaderCode(file);
-    unsigned int id = glCreateShader(type);
-    const char *src = source.c_str();
-    glShaderSource(id, 1, &src, nullptr);
-    glCompileShader(id);
-    // TODO error handling
-    int result;
-    glGetShaderiv(id, GL_COMPILE_STATUS, &result);
-    if (!result)
-    {
-        int length;
-        glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
-        char *message = (char *)alloca(length * sizeof(char));
-        glGetShaderInfoLog(id, length, &length, message);
-        throw std::runtime_error((type == GL_VERTEX_SHADER ? std::string("Vertex") : std::string("Fragment")) + "Shader compilation failed " + std::string(message));
-    }
-    return id;
-}
-static unsigned int CreateShader(const std::string vert_shader, const std::string frag_shader)
-{
-    unsigned int program = glCreateProgram();
-    unsigned int vs = CompileShader(GL_VERTEX_SHADER, vert_shader);
-    unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, frag_shader);
-    glAttachShader(program, vs);
-    glAttachShader(program, fs);
-    glLinkProgram(program);
-    glValidateProgram(program);
-    glDeleteShader(vs);
-    glDeleteShader(fs);
-    return program;
-}
+
 static void GlfwErrorCallback(int error, const char *description)
 {
     logger::error(description);
@@ -157,6 +116,7 @@ void crystal::Window::loop()
 void crystal::Window::init()
 {
     uint32_t VAO;
+    Shader shader("assets/shaders/vertex.glsl", "assets/shaders/fragment.glsl");
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
     unsigned int buffer;
@@ -169,11 +129,11 @@ void crystal::Window::init()
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6, positions, GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
-    glUseProgram(CreateShader("vertex.glsl", "fragment.glsl"));
+    shader.Activate();
 }
 void crystal::Window::render()
 {
-    glClearColor(1, 1, 1, 1);
+    glClearColor(0, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT);
     glDrawArrays(GL_TRIANGLES, 0, 3);
     CheckGLError();

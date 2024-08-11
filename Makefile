@@ -1,7 +1,7 @@
 OUT := build
 #lists all .c files in src directory
 SOURCE_DIRECTORY = src
-SRC_FILES := $(wildcard ${SOURCE_DIRECTORY}/*.cpp) $(wildcard ${SOURCE_DIRECTORY}/util/*.cpp) $(wildcard ${SOURCE_DIRECTORY}/core/*.cpp)  $(wildcard ${SOURCE_DIRECTORY}/core/geometry/*.cpp) $(wildcard ${SOURCE_DIRECTORY}/ui/*.cpp)
+SRC_FILES := $(wildcard ${SOURCE_DIRECTORY}/*.cpp) $(wildcard ${SOURCE_DIRECTORY}/geometry/*.cpp) $(wildcard ${SOURCE_DIRECTORY}/core/*.cpp)  $(wildcard ${SOURCE_DIRECTORY}/layout/*.cpp) 
 #$(VARIABLE:OLD_SUFFIX=NEW_SUFFIX) changes extension of all .c files to .obj
 #creates object file names from .cpp file names and stores them
 O_FILES = $(addprefix $(OUT)/,$(notdir $(SRC_FILES:.cpp=.obj)))

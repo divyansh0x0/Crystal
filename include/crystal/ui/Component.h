@@ -1,6 +1,8 @@
 #pragma once
 
-#include "core/Core.h"
+#include "crystal/layout/Size.h"
+#include "crystal/geometry/Vector2.h"
+
 
 namespace crystal
 {
@@ -10,7 +12,7 @@ namespace crystal
         virtual void render();
         virtual void update();
         virtual const crystal::Size& getSize();
-        virtual const crystal::Vector2f& getPosition();
+        virtual const crystal::geometry::Vector2& getPosition();
         virtual ~Component() = default;
     };
 }
