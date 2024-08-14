@@ -1,10 +1,9 @@
-#include  "crystal/core/Shader.h"
+#include "crystal/core/Shader.h"
 #include "glad/glad.h"
 #include "crystal/core/Logger.h"
 #include <string>
-using namespace crystal;
 
-static std::string GetShaderCode(const char* path)
+static std::string GetShaderCode(const char *path)
 {
     std::ifstream stream(path);
     std::string line;
@@ -16,7 +15,7 @@ static std::string GetShaderCode(const char* path)
     logger::success(code);
     return code;
 }
-static unsigned int CompileShader(unsigned int type, const char* path)
+static unsigned int CompileShader(unsigned int type, const char *path)
 {
     std::string source = GetShaderCode(path);
     unsigned int id = glCreateShader(type);
@@ -36,22 +35,27 @@ static unsigned int CompileShader(unsigned int type, const char* path)
     }
     return id;
 }
-
-Shader::Shader(const char* vertex_file,const char* fragment_file){
-    unsigned int program = glCreateProgram();
-    unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertex_file);
-    unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragment_file);
-    glAttachShader(program, vs);
-    glAttachShader(program, fs);
-    glLinkProgram(program);
-    glValidateProgram(program);
-    glDeleteShader(vs);
-    glDeleteShader(fs);
-    this->ID = program;
-}
-void Shader::Activate(){
-    glUseProgram(this->ID);
-}
-void Shader::Delete(){
-    glDeleteProgram(this->ID);
+namespace crystal
+{
+    Shader::Shader(const char *vertex_file, const char *fragment_file)
+    {
+        unsigned int program = glCreateProgram();
+        unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertex_file);
+        unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragment_file);
+        glAttachShader(program, vs);
+        glAttachShader(program, fs);
+        glLinkProgram(program);
+        glValidateProgram(program);
+        glDeleteShader(vs);
+        glDeleteShader(fs);
+        this->ID = program;
+    }
+    void Shader::Activate()
+    {
+        glUseProgram(this->ID);
+    }
+    void Shader::Delete()
+    {
+        glDeleteProgram(this->ID);
+    }
 }

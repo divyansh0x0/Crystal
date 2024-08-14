@@ -54,8 +54,8 @@ namespace crystal::geometry
         std::string toString() const;
     };
 
-    static const Vector3 ZERO = Vector3(0, 0, 0);
-    static const Vector3 UNIT_X = Vector3(1, 0, 0);
-    static const Vector3 UNIT_Y = Vector3(0, 1, 0);
-    static const Vector3 UNIT_Z = Vector3(0, 0, 1);
+    static const Vector3 zero = Vector3(0, 0, 0);
+    static const Vector3 unit_x = Vector3(1, 0, 0);
+    static const Vector3 unit_y = Vector3(0, 1, 0);
+    static const Vector3 unit_z = Vector3(0, 0, 1);
 }

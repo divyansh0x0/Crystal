@@ -10,39 +10,41 @@
 #define CYAN "\x1b[36m"
 #define RESET "\x1b[0m"
 
-// using namespace std;
-void logger::info(std::string s)
+namespace crystal
 {
-    std::cout<< CYAN << s << RESET << std::endl;
-}
-void logger::info(const char* s)
-{
-    std::cout<< CYAN << s << RESET << std::endl;
-}
-void logger::success(std::string s)
-{
-    std::cout<< GREEN << s << RESET << std::endl;
-    // printf("%s%s%s", GREEN, s, RESET_NEWLINE);
-}
+    void info(std::string s)
+    {
+        std::cout << CYAN << s << RESET << std::endl;
+    }
+    void info(const char *s)
+    {
+        std::cout << CYAN << s << RESET << std::endl;
+    }
+    void success(std::string s)
+    {
+        std::cout << GREEN << s << RESET << std::endl;
+        // printf("%s%s%s", GREEN, s, RESET_NEWLINE);
+    }
 
-void logger::success(const char* s)
-{
-    std::cout<< GREEN << s << RESET << std::endl;
-}
-void logger::error(std::string s)
-{
-    std::cout<< RED << s << RESET << std::endl;
-}
+    void success(const char *s)
+    {
+        std::cout << GREEN << s << RESET << std::endl;
+    }
+    void error(std::string s)
+    {
+        std::cout << RED << s << RESET << std::endl;
+    }
 
-void logger::error(const char* s)
-{
-    std::cout<< RED << s << RESET << std::endl;
-}
-void logger::warn(std::string s)
-{
-    std::cout<< YELLOW << s << RESET << std::endl;
-}
-void logger::warn(const char* s)
-{
-    std::cout<< YELLOW << s << RESET << std::endl;
+    void error(const char *s)
+    {
+        std::cout << RED << s << RESET << std::endl;
+    }
+    void warn(std::string s)
+    {
+        std::cout << YELLOW << s << RESET << std::endl;
+    }
+    void warn(const char *s)
+    {
+        std::cout << YELLOW << s << RESET << std::endl;
+    }
 }

@@ -3,6 +3,7 @@
 #include "crystal/core/Color.h"
 #include "crystal/layout/Size.h"
 #include <GLFW/glfw3.h>
+#include <thread>
 #include <string>
 // #include<SDL2/SDL.h>
 // int main(int argv, char** args)
@@ -20,13 +21,15 @@ namespace crystal
     class Window
     {
     private:
-        std::string window_name_;
-        crystal::Size window_size_;
-        crystal::Color background_color_;
-        GLFWwindow* glfw_window_;
+        
+        std::string m_window_name;
+        crystal::Size m_window_size;
+        crystal::Color m_background_color;
+        GLFWwindow* m_glfw_window;
         const uint32_t MAX_FPS = 120;
         uint32_t current_fps = 0;
-        bool b_destroy_window_;
+        bool m_destroy_window_flag;
+        void windowResizedCallback(int new_width, int new_height);
     public:
         bool b_vsync_ = false;
         Window(std::string name, crystal::Size size, crystal::Color background_color);
