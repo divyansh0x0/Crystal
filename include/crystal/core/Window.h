@@ -21,15 +21,15 @@ namespace crystal
     class Window
     {
     private:
-        
         std::string m_window_name;
         crystal::Size m_window_size;
         crystal::Color m_background_color;
-        GLFWwindow* m_glfw_window;
+        GLFWwindow *m_glfw_window;
         const uint32_t MAX_FPS = 120;
         uint32_t current_fps = 0;
         bool m_destroy_window_flag;
         void windowResizedCallback(int new_width, int new_height);
+
     public:
         bool b_vsync_ = false;
         Window(std::string name, crystal::Size size, crystal::Color background_color);
@@ -38,6 +38,7 @@ namespace crystal
         void destroyWindow();
         uint32_t getCurrentFPS();
         ~Window();
+
     protected:
         void render();
         void init();

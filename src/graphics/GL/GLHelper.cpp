@@ -1,4 +1,4 @@
-#include "crystal/graphics/GLHelper.h"
+#include "crystal/graphics/GL/GLHelper.h"
 std::string crystal::DecodeGLError(int error)
 {
     switch (error)
@@ -20,9 +20,3 @@ std::string crystal::DecodeGLError(int error)
     }
 }
 
-void crystal::CheckGLError()
-{
-    int error = glGetError();
-    if (error != GL_NO_ERROR)
-        logger::error(crystal::DecodeGLError(error));
-}

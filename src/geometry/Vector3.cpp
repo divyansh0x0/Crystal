@@ -110,11 +110,7 @@ namespace crystal::geometry
 
     float Vector3::magnitude() const
     {
-        if (!cached_magnitude.has_value())
-        {
-            cached_magnitude = std::sqrt(x * x + y * y + z * z);
-        }
-        return cached_magnitude.value();
+        return  std::sqrt(x * x + y * y + z * z);
     }
 
     float Vector3::squaredMagnitude() const

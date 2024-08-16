@@ -1,6 +1,7 @@
 #include "crystal/core/Core.h"
 #include "crystal/core/window.h"
 #include "crystal/layout/Size.h"
+#include "crystal/geometry/Vector3.h"
 crystal::Size window_size = crystal::Size(800, 600);
 
 int main() {
@@ -19,13 +20,14 @@ int main() {
     // crystal::geometry::Vector3 v1 = crystal::geometry::Vector3(0, 1, 0);
     // crystal::geometry::Vector2 v2 = crystal::geometry::Vector2(1, 0);
 
+    crystal::geometry::Vector3 v1(1,2,3);
     // logger::success((v1*v2).toString());
     // logger::success((v1/32).toString());
     // logger::success(std::to_string(v1.magnitude()));
     // logger::success(std::to_string(v1.magnitude()));
     // logger::success(std::to_string(v1.magnitude()));
     // logger::success(std::to_string(v1.magnitude()));
-    // logger::success(std::to_string(v1.magnitude()));
+    logger::success(std::to_string(v1.magnitude()));
     window.loop();
     return 0;
 }

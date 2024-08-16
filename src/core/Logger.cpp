@@ -1,4 +1,4 @@
-#include <core/logger.h>
+#include "crystal/core/Logger.h"
 #include <iostream>
 // #include <string.h>
 // #include <iostream>
@@ -10,7 +10,7 @@
 #define CYAN "\x1b[36m"
 #define RESET "\x1b[0m"
 
-namespace crystal
+namespace logger
 {
     void info(std::string s)
     {

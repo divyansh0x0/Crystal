@@ -1,6 +1,7 @@
 #pragma once
 #include "crystal/geometry/Matrix.h"
-#include<optional>
+#include <cmath>
+
 namespace crystal::geometry
 {
     /**
@@ -13,12 +14,13 @@ namespace crystal::geometry
         float x;
         float y;
         float z;
-        mutable std::optional<float> cached_magnitude;
     public:
 
         Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
         Vector3(const Vector3 &other) : x(other.x), y(other.y), z(other.z) {}
+
         Vector3(const std::vector<float> &arr) : x(arr[0]), y(arr[1]), z(arr[2]) {}
+        Vector3(const float arr[3] ):x(arr[0]), y(arr[1]), z(arr[2]) {};
         Vector3() : x(0), y(0), z(0) {}
 
         Vector3 operator+(const Vector3 &other) const;
@@ -36,15 +38,18 @@ namespace crystal::geometry
         bool operator==(const Vector3 &other) const;
         bool operator!=(const Vector3 &other) const;
 
-        float dot(const Vector3 &other) const;
-        Vector3 cross(const Vector3 &other) const;
 
-        float magnitude() const;
-        float squaredMagnitude() const;
-        Vector3 normalize() const;
-        float getAngle(const Vector3 &other) const;
-        float getDistance(const Vector3 &other) const;
-        float getDistanceSquared(const Vector3 &other) const;
+        [[nodiscard]] float dot(const Vector3 &other) const;
+        [[nodiscard]] Vector3 cross(const Vector3 &other) const;
+        [[nodiscard]] float magnitude() const;
+        [[nodiscard]] constexpr float magnitude(){ return std::sqrt(x * x + y * y + z * z);};
+        [[nodiscard]] float squaredMagnitude() const;
+        
+        [[nodiscard]] constexpr float squaredMagnitude() {return x * x + y * y + z * z;};
+        [[nodiscard]] Vector3 normalize() const ;
+        [[nodiscard]] float getAngle(const Vector3 &other) const;
+        [[nodiscard]] float getDistance(const Vector3 &other) const;
+        [[nodiscard]] float getDistanceSquared(const Vector3 &other) const;
 
 
         float getX() const {return x;};
