@@ -2,6 +2,7 @@
 #include "glad/glad.h"
 #include "crystal/core/Color.h"
 #include "crystal/layout/Size.h"
+#include "crystal/graphics/Renderer.h"
 #include <GLFW/glfw3.h>
 #include <thread>
 #include <string>
@@ -24,7 +25,9 @@ namespace crystal
         std::string m_window_name;
         crystal::Size m_window_size;
         crystal::Color m_background_color;
+        crystal::graphics::Renderer m_renderer{};
         GLFWwindow *m_glfw_window;
+
         const uint32_t MAX_FPS = 120;
         uint32_t current_fps = 0;
         bool m_destroy_window_flag;
@@ -36,12 +39,9 @@ namespace crystal
         void addComponent();
         void loop();
         void destroyWindow();
+        void swapBuffers();
         uint32_t getCurrentFPS();
         ~Window();
-
-    protected:
-        void render();
-        void init();
     };
 
 }

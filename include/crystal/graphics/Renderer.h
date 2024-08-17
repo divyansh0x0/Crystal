@@ -5,9 +5,14 @@ namespace crystal::graphics
     class Renderer
     {
     private:
-        GraphicsAPI api = GraphicsAPI::OpenGL;
-
+        GraphicsContextType m_graphics_api = GraphicsContextType::OpenGL;
+        GraphicsContext* m_graphics_context;
+        bool m_initialized_flag;
     public:
-        void Init();
+        Renderer();
+        ~Renderer();
+        void init();
+        void setAPI(GraphicsContextType api);
+        void render();
     };
 }

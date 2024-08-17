@@ -1,7 +1,7 @@
 #include "crystal/core/Window.h"
 #include "crystal/core/Logger.h"
 #include "crystal/graphics/GL/GLHelper.h"
-#include "crystal/graphics/Shader.h"
+#include "crystal/graphics/GL/GLShader.h"
 #include <stdexcept>
 #include <chrono>
 #include <fstream>
@@ -11,39 +11,6 @@ float getCurrentTimeMs()
     return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 }
 
-// static unsigned int CompileShader(unsigned int type, const std::string file)
-// {
-//     std::string source = GetShaderCode(file);
-//     unsigned int id = glCreateShader(type);
-//     const char *src = source.c_str();
-//     glShaderSource(id, 1, &src, nullptr);
-//     glCompileShader(id);
-//     // TODO error handling
-//     int result;
-//     glGetShaderiv(id, GL_COMPILE_STATUS, &result);
-//     if (!result)
-//     {
-//         int length;
-//         glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
-//         char *message = (char *)alloca(length * sizeof(char));
-//         glGetShaderInfoLog(id, length, &length, message);
-//         throw std::runtime_error((type == GL_VERTEX_SHADER ? std::string("Vertex") : std::string("Fragment")) + "Shader compilation failed " + std::string(message));
-//     }
-//     return id;
-// // }
-// static unsigned int CreateShader(const std::string vert_shader, const std::string frag_shader)
-// {
-//     unsigned int program = glCreateProgram();
-//     unsigned int vs = CompileShader(GL_VERTEX_SHADER, vert_shader);
-//     unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, frag_shader);
-//     glAttachShader(program, vs);
-//     glAttachShader(program, fs);
-//     glLinkProgram(program);
-//     glValidateProgram(program);
-//     glDeleteShader(vs);
-//     glDeleteShader(fs);
-//     return program;
-// }
 static void GlfwErrorCallback(int error, const char *description)
 {
     logger::error(description);
@@ -95,7 +62,8 @@ void Window::loop()
     float t1 = glfwGetTime();
     const float MIN_FRAME_DELAY = 1.0 / MAX_FPS;
 
-    this->init();
+    this->m_renderer.init();
+
     while (!m_destroy_window_flag && !glfwWindowShouldClose(this->m_glfw_window))
     {
         float t2 = glfwGetTime();
@@ -104,7 +72,8 @@ void Window::loop()
         if (dt < MIN_FRAME_DELAY)
             continue;
 
-        this->render();
+        // this->render();
+       this->m_renderer.render();
         glfwSwapBuffers(this->m_glfw_window);
         glfwPollEvents();
 
@@ -121,43 +90,7 @@ void Window::loop()
         t1 = t2;
     }
 }
-int shaderID = 0;
-void Window::init()
-{
-    uint32_t VAO;
-    std::string vert_shader = crystal::graphics::GetShaderCode("assets/shaders/vertex.glsl");
-    std::string frag_shader = crystal::graphics::GetShaderCode("assets/shaders/fragment.glsl");
-    crystal::graphics::GLShader Shader(vert_shader, frag_shader);
-    GL_CALL(glGenVertexArrays(1, &VAO));
-    GL_CALL(glBindVertexArray(VAO));
-    unsigned int buffer;
-    float positions[6] = {
-        -0.5f, -0.5,
-        0.0f, 0.5f,
-        0.5f, -0.5f};
-    GL_CALL(glGenBuffers(1, &buffer));
-    GL_CALL(glBindBuffer(GL_ARRAY_BUFFER, buffer));
-    GL_CALL(glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6, positions, GL_STATIC_DRAW));
-    GL_CALL(glEnableVertexAttribArray(0));
-    Shader.activate();
-    shaderID = Shader.getID();
-    GL_CALL(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));
-}
 
-float r = 0;
-float i = 0.1;
-void Window::render()
-{
-    if(r >  1.0f)
-        i = -0.1;
-    if(r < 0.0f)
-        i = 0.1;
-    r += i;
-    glUniform4f(glGetUniformLocation(shaderID, "u_Color"),r, 0.3f, 0.8f, 1.0f);
-
-    glClear(GL_COLOR_BUFFER_BIT);
-   GL_CALL( glDrawArrays(GL_TRIANGLES, 0, 3));
-}
 
 void Window::addComponent()
 {

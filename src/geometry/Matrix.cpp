@@ -5,6 +5,21 @@ namespace crystal::geometry
 {
 
     Matrix::Matrix(const Matrix &other) : array(other.array), num_rows(other.num_rows), num_cols(other.num_cols) {}
+    Matrix::Matrix(const std::initializer_list<std::vector<float>> &arr) : array(arr), num_rows(array.size()), num_cols(array[0].size())
+    {
+
+        if (num_rows == 0 || num_cols == 0)
+        {
+            throw std::runtime_error("Invalid matrix dimensions, cannot create matrix of dimensions " + std::to_string(num_rows) + "x" + std::to_string(num_cols));
+        }
+        for (size_t i = 0; i < arr.size(); i++)
+        {
+            if (array[i].size() != this->num_cols)
+            {
+                throw std::runtime_error("Invalid number of items in row, found " + std::to_string(array[i].size()) + " elements expected " + std::to_string(this->num_cols) + "elements");
+            }
+        }
+    }
     Matrix::Matrix(const std::vector<std::vector<float>> &arr) : array(arr), num_rows(arr.size()), num_cols(arr[0].size())
     {
 

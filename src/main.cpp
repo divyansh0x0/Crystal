@@ -7,7 +7,7 @@ crystal::Size window_size = crystal::Size(800, 600);
 int main() {
     crystal::Window window = crystal::Window("Crystal", window_size, crystal::Color(255, 255, 255, 255));
     // crystal::geometry::Matrix I =crystal::geometry::Matrix::identity(3,3);
-    // crystal::geometry::Matrix m2({{1,2,3},{4,5,16},{7,8,9}});
+    crystal::geometry::Matrix m2({{1,2,3},{4,5,16},{7,8,9}});
     // crystal::geometry::Matrix m3(3,3,0);
 
     // crystal::geometry::Matrix m4 = m2.getSubMatrix(0,1);

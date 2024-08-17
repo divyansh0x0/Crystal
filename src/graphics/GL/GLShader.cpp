@@ -1,4 +1,4 @@
-#include "crystal/graphics/Shader.h"
+#include "crystal/graphics/GL/GLShader.h"
 #include "crystal/graphics/GL/GLHelper.h"
 #include <stdexcept>
 

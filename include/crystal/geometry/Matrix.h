@@ -35,6 +35,12 @@ namespace crystal::geometry
              * @param arr Array representation of the matrix.
              */
             Matrix(const std::vector<std::vector<float>>& arr);
+            
+            /**
+             * @brief Constructor for Matrix.
+             * @param arr Array representation of the matrix.
+             */
+            Matrix(const std::initializer_list<std::vector<float>>& arr);
             /**
              * @brief Constructor for Matrix.
              * @param row Number of rows in the matrix.
