@@ -2,14 +2,12 @@
 #include <inttypes.h>
 namespace crystal
 {
-    class Size
+    struct Size
     {
-
-    public:
-        uint64_t WIDTH;
-        uint64_t HEIGHT;
-        Size(uint64_t width, uint64_t height);
-        Size(uint64_t size) : Size(size, size) {};
-        void changeTo(uint64_t width, uint64_t height);
+        uint64_t width;
+        uint64_t height;
+        Size(uint64_t width, uint64_t height) : width(width), height(height) {};
+        Size(uint64_t size) : width(size), height(size) {};
+        void changeTo(uint64_t width, uint64_t height) {this->width = width; this->height = height;};
     };
 }

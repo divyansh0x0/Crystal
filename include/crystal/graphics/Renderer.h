@@ -1,15 +1,27 @@
+#include "crystal/core/Window.h"
 #include "crystal/graphics/GraphicsAPI.h"
+#include "crystal/layout/Size.h"
+#include <thread>
+#include <atomic>
+
 
 namespace crystal::graphics
 {
     class Renderer
     {
     private:
+        crystal::Window* m_window;
         GraphicsContextType m_graphics_api = GraphicsContextType::OpenGL;
         GraphicsContext* m_graphics_context;
-        bool m_initialized_flag;
-    public:
+        std::thread* m_render_thread;
+        unsigned int m_max_fps = 120;
+        unsigned int current_fps = 0;
+        std::atomic<bool> m_initialized_flag = false;
+        std::atomic<bool> m_destroyed_flag = false;
         Renderer();
+        void renderingLoop();
+    public:
+        Renderer(Window* window, GraphicsContextType api = GraphicsContextType::OpenGL):m_window(window), m_graphics_api(api), m_graphics_context(GraphicsContext::create(api)){};
         ~Renderer();
         void init();
         void setAPI(GraphicsContextType api);

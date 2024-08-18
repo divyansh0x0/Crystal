@@ -93,7 +93,7 @@ namespace crystal::geometry
                 }
             }
         }
-        // logger::success("Matrix: " + std::string(result.begin(), result.end()));
+        // logger::Success("Matrix: " + std::string(result.begin(), result.end()));
         return Matrix(result);
     }
     Matrix &Matrix::operator*=(const Matrix &other)

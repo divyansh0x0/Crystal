@@ -12,39 +12,61 @@
 
 namespace logger
 {
-    void info(std::string s)
-    {
-        std::cout << CYAN << s << RESET << std::endl;
+    std::string LogTypeToString(LogType log_type){
+        switch(log_type){
+            case LogType::INFO: return "INFO";
+            case LogType::WARN: return "WARN";
+            case LogType::ERROR: return "ERROR"; 
+            case LogType::SUCCESS: return "SUCCESS";
+            case LogType::DESTRUCTION: return "DESTRUCTION";
+            case LogType::CONSTRUCTION: return "CONSTRUCTION";
+            case LogType::MATH: return "MATH";
+            case LogType::GRAPHICS: return "GRAPHICS";
+            case LogType::PHYSICS: return "PHYSICS";
+            case LogType::AUDIO: return "AUDIO";
+            case LogType::USER: return "USER";
+            case LogType::VULKAN: return "VULKAN";
+            case LogType::OPENGL: return "OPENGL";
+            case LogType::DIRECTX: return "DIRECTX";
+            case LogType::SHADER: return "SHADER";
+            case LogType::RESOURCE: return "RESOURCE";
+            case LogType::MESSAGE: return "MESSAGE";
+            default: return "UNKNOWN";
+        }
     }
-    void info(const char *s)
+    void Info(const std::string& s)
     {
-        std::cout << CYAN << s << RESET << std::endl;
+        Info(LogType::MESSAGE,s);
     }
-    void success(std::string s)
-    {
-        std::cout << GREEN << s << RESET << std::endl;
-        // printf("%s%s%s", GREEN, s, RESET_NEWLINE);
+    void Info(LogType type,const std::string& s){
+        std::cout << CYAN << "[MESSAGE] " << (type == LogType::MESSAGE ? "" : "[" +LogTypeToString(type) + "] ")<< s << RESET << std::endl;
     }
 
-    void success(const char *s)
+    void Error(const std::string& s)
     {
-        std::cout << GREEN << s << RESET << std::endl;
-    }
-    void error(std::string s)
-    {
-        std::cout << RED << s << RESET << std::endl;
+        Error(LogType::MESSAGE,s);
     }
 
-    void error(const char *s)
-    {
-        std::cout << RED << s << RESET << std::endl;
+    void Error(LogType type,const std::string& s){
+        std::cout << RED <<  "[ERROR] "<< "[" <<LogTypeToString(type) << "] " << s << RESET << std::endl;
     }
-    void warn(std::string s)
+
+
+    void Warn(const std::string& s)
     {
-        std::cout << YELLOW << s << RESET << std::endl;
+        Warn(LogType::MESSAGE,s);
     }
-    void warn(const char *s)
+
+    void Warn(LogType type,const std::string& s){
+        std::cout << YELLOW << "[WARNING] " << "[" <<LogTypeToString(type) << "] " << s << RESET << std::endl;
+    }
+    
+    void Success(const std::string& s)
     {
-        std::cout << YELLOW << s << RESET << std::endl;
+        Success(LogType::MESSAGE,s);
+    }
+
+    void Success(LogType type,const std::string& s){
+        std::cout << GREEN << "[SUCCESS] " << "[" <<LogTypeToString(type) << "] " << s << RESET << std::endl;
     }
 }

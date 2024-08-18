@@ -22,7 +22,7 @@ static unsigned int CompileShader(unsigned int type, const std::string &source)
     }
     else
     {
-        logger::success((type == GL_VERTEX_SHADER ? std::string("Vertex") : std::string("Fragment")) + "Shader compiled");
+        logger::Success((type == GL_VERTEX_SHADER ? std::string("Vertex") : std::string("Fragment")) + "Shader compiled");
     }
     return id;
 }

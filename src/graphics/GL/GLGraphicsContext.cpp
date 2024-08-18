@@ -9,10 +9,9 @@ namespace crystal::graphics
     /*****************************************************************************/
     // OPENGL CONTEXT
     /*****************************************************************************/
-    int shaderID= 0;
     OpenGLContext::OpenGLContext()
     {
-
+        logger::Success("OpenGL graphics context created");
     }
     void OpenGLContext::begin()
     {
@@ -29,5 +28,6 @@ namespace crystal::graphics
     }
     OpenGLContext::~OpenGLContext()
     {
+        
     }
 }

@@ -6,7 +6,7 @@
         x;                                                                                                     \
         int error = glGetError();                                                                              \
         if (error != GL_NO_ERROR)                                                                              \
-            logger::error(crystal::DecodeGLError(error) + " at " + __FILE__ + ":" + std::to_string(__LINE__)); \
+            logger::Error(crystal::DecodeGLError(error) + " at " + __FILE__ + ":" + std::to_string(__LINE__)); \
     }
 namespace crystal
 {

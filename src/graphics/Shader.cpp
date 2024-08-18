@@ -18,7 +18,7 @@ namespace crystal::graphics
         {
             code += line + "\n";
         }
-        logger::success(code);
+        logger::Success(code);
         return code;
     };
 }
