@@ -2,8 +2,23 @@
 #include <cmath>
 #include <vector>
 #include <stdexcept>
+static float FastInverseSqrt(float x) {
+    long i;
+    float x2, y;
+    const float threehalfs = 1.5F;
+
+    x2 = x * 0.5F;
+    y = x;
+    i = *(long*)&y;
+    i = 0x5f3759df - (i >> 1);
+    y = *(float*)&i;
+    y = y * (threehalfs - (x2 * y * y));
+
+    return y;
+}
 namespace crystal::geometry
 {
+
     Vector3 Vector3::operator+(const Vector3 &other) const
     {
         return Vector3(x + other.x, y + other.y, z + other.z);
@@ -115,13 +130,12 @@ namespace crystal::geometry
 
     float Vector3::squaredMagnitude() const
     {
-        float mag = magnitude();
-        return mag * mag;
+        return x*x + y*y + z*z;
     }
 
     Vector3 Vector3::normalize() const
     {
-        return *this / magnitude();
+        return *this * FastInverseSqrt(x * x + y * y + z * z);
     }
 
     float Vector3::getAngle(const Vector3 &other) const
