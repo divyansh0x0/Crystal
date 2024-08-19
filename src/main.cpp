@@ -2,7 +2,7 @@
 #include "crystal/core/window.h"
 #include "crystal/layout/Size.h"
 #include "crystal/geometry/Vector3.h"
-crystal::Size window_size = crystal::Size(800, 600);
+crystal::layout::Size window_size = crystal::layout::Size(800, 600);
 
 int main() {
     crystal::Window window = crystal::Window("Crystal", window_size, crystal::Color(255, 255, 255, 255));

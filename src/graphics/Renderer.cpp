@@ -14,7 +14,7 @@ namespace crystal::graphics
 {
     void Renderer::renderingLoop()
     {
-        m_window->makeContextCurrent();
+        m_context_manager->switchContextToCurrentThread();
         if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
             logger::Error("Failed to initialize GLAD");
         else
@@ -57,7 +57,6 @@ namespace crystal::graphics
         {
             uint64_t t2 = getCurrentTimeMicros();
             uint64_t dt = t2 - t1;
-            // logger::Info(std::string("dt: ") + std::to_string(dt) + " min frame time: " + std::to_string(min_frame_time_micros));
 
             if (dt < one_second_in_micros / m_max_fps)
                 continue;
@@ -67,11 +66,11 @@ namespace crystal::graphics
             if (timespent_micros >= one_second_in_micros)
             {
                 logger::Info(std::string("FPS: ") + std::to_string(frames_rendered) + " | Timespent: " + std::to_string(timespent_micros) + "microsecond");
-                this->current_fps = frames_rendered;
+                current_fps = frames_rendered;
                 timespent_micros = 0;
                 frames_rendered = 0;
             }
-            m_window->swapBuffers();
+            m_context_manager->swapBuffers();
             t1 = t2;
         }
         logger::Info(logger::LogType::DESTRUCTION,"rendering loop ended");
@@ -92,15 +91,14 @@ namespace crystal::graphics
         if (r < 0.0f)
             i = 0.1;
         r += i;
-        GL_CALL(glViewport(0, 0, m_window->getWidth(), m_window->getHeight()));
+        crystal::layout::Size framebuffer_size = m_context_manager->getFrameBufferSize();
+        GL_CALL(glViewport(0, 0, framebuffer_size.width, framebuffer_size.height));
         GL_CALL(glUniform4f(glGetUniformLocation(shaderID, "u_Color"), r, 0.3f, 0.8f, 1.0f));
 
         GL_CALL(glClear(GL_COLOR_BUFFER_BIT));
         GL_CALL(glDrawArrays(GL_TRIANGLES, 0, 3));
     }
-    void Renderer::setAPI(GraphicsContextType api)
-    {
-    }
+
 
     Renderer::~Renderer()
     {

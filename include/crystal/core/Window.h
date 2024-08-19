@@ -5,24 +5,14 @@
 #include <GLFW/glfw3.h>
 #include <thread>
 #include <string>
-// #include<SDL2/SDL.h>
-// int main(int argv, char** args)
-// {
-//     if(SDL_Init(SDL_INIT_EVERYTHING) != 0){
-//         logger::Error("SDL INITIALIZATION FAILED");
-//         return -1;
-//     }
-//     logger::Success("SDL INITIALIZED");
-//     SDL_Window* window = SDL_CreateWindow("", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_VULKAN| SDL_WINDOW_SHOWN);
-//     return 0;
-// }
+#include "crystal/graphics/ApiContextManager.h"
 namespace crystal
 {
-    class Window
+    class Window : public crystal::graphics::ApiContextManager
     {
     private:
         std::string m_window_name;
-        crystal::Size m_window_size;
+        crystal::layout::Size m_frame_buffer_size;
         crystal::Color m_background_color;
         // crystal::graphics::Renderer m_renderer{};
         GLFWwindow *m_glfw_window;
@@ -32,20 +22,18 @@ namespace crystal
 
     public:
         bool b_vsync_ = false;
-        Window(std::string name, crystal::Size size, crystal::Color background_color);
+        Window(std::string name, crystal::layout::Size size, crystal::Color background_color);
         void addComponent();
         void show();
         void destroyWindow();
-        void swapBuffers();
         
-        unsigned int getWidth() {return m_window_size.width;}
-        unsigned int getHeight() {return m_window_size.height;}
+        unsigned int getWidth() {return m_frame_buffer_size.width;}
+        unsigned int getHeight() {return m_frame_buffer_size.height;}
 
-        Size& getSize() {return m_window_size;};
-        Size& getFrameBufferSize();
-        void makeContextCurrent();
-        void detachCurrentContext();
-
+        const crystal::layout::Size& getFrameBufferSize() override;
+        void switchContextToCurrentThread()override;
+        void detachContextFromCurrentThread()override;
+        void swapBuffers()override;
         ~Window();
     };
 

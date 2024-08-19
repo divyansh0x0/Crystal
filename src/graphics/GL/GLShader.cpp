@@ -41,15 +41,15 @@ namespace crystal::graphics
         GL_CALL(glValidateProgram(program));
         GL_CALL(glDeleteShader(vs));
         GL_CALL(glDeleteShader(fs));
-        this->m_ID = program;
+        m_ID = program;
     }
     void GLShader::activate()
     {
-        GL_CALL(glUseProgram(this->m_ID));
+        GL_CALL(glUseProgram(m_ID));
     };
     void GLShader::destroy()
     {
-        GL_CALL(glDeleteProgram(this->m_ID));
+        GL_CALL(glDeleteProgram(m_ID));
     };
 
 }

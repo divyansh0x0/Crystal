@@ -24,7 +24,7 @@ static void FramebufferSizeCallback(GLFWwindow *window, int width, int height)
 namespace crystal
 {
 
-    Window::Window(std::string name, crystal::Size size, crystal::Color background_color) : m_window_name(name), m_window_size(size), m_background_color(background_color), m_destroy_window_flag(false)
+    Window::Window(std::string name, crystal::layout::Size size, crystal::Color background_color) : m_window_name(name), m_frame_buffer_size(size), m_background_color(background_color), m_destroy_window_flag(false)
     {
         glfwSetErrorCallback(GlfwErrorCallback);
         if (glfwInit() == GLFW_FALSE)
@@ -38,10 +38,10 @@ namespace crystal
     }
     void Window::show()
     {
-        this->m_glfw_window = glfwCreateWindow(this->m_window_size.width, this->m_window_size.height, this->m_window_name.data(), NULL, NULL);
-        glfwSetWindowUserPointer(this->m_glfw_window, this);
+        m_glfw_window = glfwCreateWindow(m_frame_buffer_size.width, m_frame_buffer_size.height, m_window_name.data(), NULL, NULL);
+        glfwSetWindowUserPointer(m_glfw_window, this);
         
-        glfwSetFramebufferSizeCallback(this->m_glfw_window, [](GLFWwindow *glfw_window, int width, int height){
+        glfwSetFramebufferSizeCallback(m_glfw_window, [](GLFWwindow *glfw_window, int width, int height){
             Window* window = (Window*)  glfwGetWindowUserPointer(glfw_window);
             window->frameBufferResizedCallback(width, height);
         });
@@ -52,37 +52,40 @@ namespace crystal
             glfwTerminate();
         }
 
-        this->makeContextCurrent();
+        switchContextToCurrentThread();
         glfwSwapInterval(0);
-        this->detachCurrentContext();
+        detachContextFromCurrentThread();
 
 
 
+        //renderer has its own separate thread
         crystal::graphics::Renderer renderer = crystal::graphics::Renderer(this);
         renderer.init();
 
 
-        while (!m_destroy_window_flag && !glfwWindowShouldClose(this->m_glfw_window))
+        while (!m_destroy_window_flag && !glfwWindowShouldClose(m_glfw_window))
         {
             glfwWaitEvents();
         }
 
     }
     void Window::frameBufferResizedCallback(int new_width, int new_height){
-        this->m_window_size.changeTo(new_width, new_height);
-        logger::Success("Window resized to " + std::to_string(new_width) + "x" + std::to_string(new_height));
+        m_frame_buffer_size.changeTo(new_width, new_height);
     }
 
-    void Window::makeContextCurrent(){
-        glfwMakeContextCurrent(this->m_glfw_window);
+    void Window::switchContextToCurrentThread(){
+        glfwMakeContextCurrent(m_glfw_window);
     }
-    void Window::detachCurrentContext(){
+    void Window::detachContextFromCurrentThread(){
         glfwMakeContextCurrent(NULL);
     }
     void Window::swapBuffers()
     {
         // logger::Info("Swapping buffer");
-        glfwSwapBuffers(this->m_glfw_window);
+        glfwSwapBuffers(m_glfw_window);
+    }
+    const crystal::layout::Size& Window::getFrameBufferSize(){
+        return m_frame_buffer_size;
     }
 
     void Window::addComponent()
@@ -99,7 +102,7 @@ namespace crystal
     }
     Window::~Window()
     {
-        glfwDestroyWindow(this->m_glfw_window);
+        glfwDestroyWindow(m_glfw_window);
         glfwTerminate();
         logger::Success(logger::LogType::DESTRUCTION,"Window destroyed");
     }
