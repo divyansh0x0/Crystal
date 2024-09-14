@@ -1,5 +1,4 @@
 #include "crystal/geometry/Matrix.h"
-#include "crystal/core/Logger.h"
 #include <stdexcept>
 namespace crystal::geometry
 {

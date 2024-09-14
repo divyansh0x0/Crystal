@@ -12,6 +12,7 @@ namespace crystal::graphics
     OpenGLContext::OpenGLContext()
     {
         logger::Success("OpenGL graphics context created");
+        
     }
     void OpenGLContext::begin()
     {

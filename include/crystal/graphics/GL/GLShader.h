@@ -6,7 +6,7 @@ namespace crystal::graphics{
         unsigned int m_ID;
 
     public:
-        GLShader(const std::string& vertex_shader_code,const std::string& fragment_shader_code);
+        GLShader(const char* vertex_shader_code,const char* fragment_shader_code);
 
         void activate() override;
         void destroy() override;

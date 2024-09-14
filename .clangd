@@ -1,0 +1,5 @@
+CompileFlags:
+  Add:
+    - "-Iexternal/include"
+    - "-Iinclude" 
+    - "-std=c++20"

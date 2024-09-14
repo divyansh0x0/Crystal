@@ -2,7 +2,7 @@
 #include <string>
 namespace crystal::graphics
 {
-    std::string GetShaderCode(const std::string &path);
+    std::string GetShaderCode(const char* path);
 
     class Shader
     {

@@ -4,10 +4,10 @@
 
 #include "glad/glad.h"
 
-static unsigned int CompileShader(unsigned int type, const std::string &source)
+static unsigned int CompileShader(unsigned int type, const char* source)
 {
     unsigned int id = glCreateShader(type);
-    const char *src = source.c_str();
+    const char *src = source;
     GL_CALL(glShaderSource(id, 1, &src, nullptr));
     GL_CALL(glCompileShader(id));
     int result;
@@ -30,7 +30,7 @@ namespace crystal::graphics
 
 {
 
-    GLShader::GLShader(const std::string &vertex_shader_code, const std::string &fragment_shader_code)
+    GLShader::GLShader(const char* vertex_shader_code, const char* fragment_shader_code)
     {
         unsigned int program = glCreateProgram();
         unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertex_shader_code);

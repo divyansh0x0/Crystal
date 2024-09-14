@@ -2,19 +2,21 @@
 #include <cmath>
 #include <vector>
 #include <stdexcept>
-static float FastInverseSqrt(float x) {
-    long i;
-    float x2, y;
+static float FastInverseSqrt(float num) {
+    union
+    {
+        float f;
+        long i;
+    } conv;
+    
     const float threehalfs = 1.5F;
 
-    x2 = x * 0.5F;
-    y = x;
-    i = *(long*)&y;
-    i = 0x5f3759df - (i >> 1);
-    y = *(float*)&i;
-    y = y * (threehalfs - (x2 * y * y));
+    float x2 = num * 0.5F;
+    conv.f = num;
+    conv.i = 0x5f3759df - (conv.i >> 1);
+    conv.f = conv.f * (threehalfs - (x2 * conv.f  * conv.f ));
 
-    return y;
+    return conv.f ;
 }
 namespace crystal::geometry
 {

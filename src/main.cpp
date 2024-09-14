@@ -3,9 +3,9 @@
 #include "crystal/layout/Size.h"
 #include "crystal/geometry/Vector3.h"
 crystal::layout::Size window_size = crystal::layout::Size(800, 600);
-
+const char* name = "Crystal";
 int main() {
-    crystal::Window window = crystal::Window("Crystal", window_size, crystal::Color(255, 255, 255, 255));
+    crystal::Window window = crystal::Window(name, window_size, crystal::Color(255, 255, 255, 255));
     // crystal::geometry::Matrix I =crystal::geometry::Matrix::identity(3,3);
     // crystal::geometry::Matrix m3(3,3,0);
 

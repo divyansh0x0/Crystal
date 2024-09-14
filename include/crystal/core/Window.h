@@ -22,7 +22,7 @@ namespace crystal
 
     public:
         bool b_vsync_ = false;
-        Window(std::string name, crystal::layout::Size size, crystal::Color background_color);
+        Window(const char* name, crystal::layout::Size size, crystal::Color background_color);
         void addComponent();
         void show();
         void destroyWindow();

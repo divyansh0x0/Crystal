@@ -5,7 +5,6 @@
 #include <thread>
 #include <atomic>
 
-
 namespace crystal::graphics
 {
     class Renderer

@@ -6,8 +6,8 @@ SRC_FILES := $(wildcard ${SOURCE_DIRECTORY}/*.cpp) $(wildcard ${SOURCE_DIRECTORY
 #creates object file names from .cpp file names and stores them
 O_FILES = $(addprefix $(OUT)/,$(notdir $(SRC_FILES:.cpp=.obj)))
 NAME := $(OUT)/crystal
-CXX := g++
-C := gcc
+COMPILER := g++
+# C := gcc
 
 PROJECT_INCLUDE_FILES := include/
 
@@ -65,12 +65,12 @@ vpath %.cpp $(dir $(SRC_FILES))
 $(OUT)/%.obj: %.cpp 
 	@echo --------------------------------------- COMPILING CPP TO OBJs ------------------------------------------------------------
 	@echo [CREATING] $@ file from $<
-	$(CXX) $(CFLAGS) $(COMPILATION_ARGS) -c $< -o $@ 
+	$(COMPILER) $(CFLAGS) $(COMPILATION_ARGS) -c $<  -o $@ 
 	
 #build executable
 $(NAME) : $(O_FILES)
 	@echo --------------------------------------- BUILDING EXECUTABLE ------------------------------------------------------------
-	$(CXX) -o $(NAME) $(O_FILES) $(LIBS_SRC) $(LINKER_FLAGS)
+	$(COMPILER) -o $(NAME) $(O_FILES) $(LIBS_SRC) $(LINKER_FLAGS)
 
 
 
@@ -92,4 +92,6 @@ debug:$(NAME)
 
 
 
-.PHONY: run build debug shaders
+
+
+.PHONY: run build debug shaders release

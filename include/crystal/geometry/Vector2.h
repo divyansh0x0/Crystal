@@ -12,4 +12,4 @@ namespace crystal::geometry{
         Vector2(const float arr[2] ):Vector3(arr[0],arr[1],0) {};
         
     };
-}
+}   
