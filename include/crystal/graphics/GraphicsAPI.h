@@ -1,4 +1,6 @@
 #pragma once
+
+#include "crystal/graphics/WindowContext.h"
 namespace crystal::graphics
 {
     enum class GraphicsContextType
@@ -7,19 +9,17 @@ namespace crystal::graphics
         Vulkan = 1,
         DirectX = 2
     };
-    class Context
+    class GraphicsContext
     {
-    public:
+        public:
+        virtual void init() = 0;
         virtual void begin() = 0;
         virtual void end() = 0;
-    };
-    class GraphicsContext : public Context
-    {
-    public:
         virtual void setVertexBuffer() = 0;
-        virtual void setIndexBuffer() = 0;
+        virtual void setIndexBuffer()  = 0;
+        virtual void dispose() = 0;
         virtual ~GraphicsContext() = default;
-        static GraphicsContext *create(GraphicsContextType api);
+        static GraphicsContext *create(GraphicsContextType api, const WindowContext *window_context);
 
     protected:
         GraphicsContext() = default;

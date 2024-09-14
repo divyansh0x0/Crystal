@@ -1,14 +1,13 @@
 #include "crystal/graphics/GL/GLShader.h"
+#include "crystal/core/Logger.h"
 #include "crystal/graphics/GL/GLHelper.h"
-#include <stdexcept>
 
 #include "glad/glad.h"
 
-static unsigned int CompileShader(unsigned int type, const char* source)
+static unsigned int CompileShader(unsigned int type, const char* src_code)
 {
     unsigned int id = glCreateShader(type);
-    const char *src = source;
-    GL_CALL(glShaderSource(id, 1, &src, nullptr));
+    GL_CALL(glShaderSource(id, 1, &src_code, nullptr));
     GL_CALL(glCompileShader(id));
     int result;
     glGetShaderiv(id, GL_COMPILE_STATUS, &result);
@@ -18,11 +17,12 @@ static unsigned int CompileShader(unsigned int type, const char* source)
         GL_CALL(glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length));
         char *message = (char *)alloca(length * sizeof(char));
         GL_CALL(glGetShaderInfoLog(id, length, &length, message));
-        throw std::runtime_error((type == GL_VERTEX_SHADER ? std::string("Vertex") : std::string("Fragment")) + "Shader compilation failed " + std::string(message));
+        logger::Error((type == GL_VERTEX_SHADER ? std::string("Vertex") : std::string("Fragment")) + " shader compilation failed"+ std::string(message));
+        logger::Error(src_code);
     }
     else
     {
-        logger::Success((type == GL_VERTEX_SHADER ? std::string("Vertex") : std::string("Fragment")) + "Shader compiled");
+        logger::Success((type == GL_VERTEX_SHADER ? std::string("Vertex") : std::string("Fragment")) + "shader compiled");
     }
     return id;
 }

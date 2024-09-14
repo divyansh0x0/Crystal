@@ -1,9 +1,12 @@
 #include "crystal/core/Logger.h"
 #include "crystal/core/Window.h"
-#include "crystal/graphics/Renderer.h"
-
 #include "crystal/graphics/GL/GLHelper.h"
 #include "crystal/graphics/GL/GLShader.h"
+#include "crystal/graphics/GraphicsAPI.h"
+#include "crystal/graphics/Renderer.h"
+#include "glad/glad.h"
+
+#include <GLFW/glfw3.h>
 #include <chrono>
 #include <stdexcept>
 
@@ -30,6 +33,7 @@ Window::Window(const char *name,
     : m_window_name(name), m_frame_buffer_size(size),
       m_background_color(background_color), m_destroy_window_flag(false)
 {
+
     glfwSetErrorCallback(GlfwErrorCallback);
     if (glfwInit() == GLFW_FALSE)
         throw std::runtime_error("GLFW INITIALIZATION FAILED");
@@ -45,10 +49,10 @@ void Window::show()
     m_glfw_window = glfwCreateWindow(m_frame_buffer_size.width,
                                      m_frame_buffer_size.height,
                                      m_window_name.data(), NULL, NULL);
-    glfwSetWindowUserPointer(m_glfw_window, this);
+    glfwSetWindowUserPointer((GLFWwindow *)m_glfw_window, this);
 
     glfwSetFramebufferSizeCallback(
-        m_glfw_window,
+        (GLFWwindow *)m_glfw_window,
         [](GLFWwindow *glfw_window, int width, int height)
         {
             Window *window = (Window *)glfwGetWindowUserPointer(glfw_window);
@@ -66,10 +70,11 @@ void Window::show()
     detachContextFromCurrentThread();
 
     // renderer has its own separate thread
-    crystal::graphics::Renderer renderer = crystal::graphics::Renderer(this);
+    crystal::graphics::Renderer renderer = crystal::graphics::Renderer(this, graphics::GraphicsContextType::OpenGL);
     renderer.init();
 
-    while (!m_destroy_window_flag && !glfwWindowShouldClose(m_glfw_window))
+    while (!m_destroy_window_flag
+           && !glfwWindowShouldClose((GLFWwindow *)m_glfw_window))
     {
         glfwWaitEvents();
     }
@@ -79,31 +84,45 @@ void Window::frameBufferResizedCallback(int new_width, int new_height)
     m_frame_buffer_size.changeTo(new_width, new_height);
 }
 
-void Window::switchContextToCurrentThread()
+void Window::switchContextToCurrentThread() const
 {
-    glfwMakeContextCurrent(m_glfw_window);
+    glfwMakeContextCurrent((GLFWwindow *)m_glfw_window);
+    if((GLFWwindow*)m_glfw_window == glfwGetCurrentContext())
+        logger::Success("Switched context to current thread");
+    else
+        logger::Error("Failed to switch context to current thread");
 }
-void Window::detachContextFromCurrentThread() { glfwMakeContextCurrent(NULL); }
-void Window::swapBuffers()
+void Window::detachContextFromCurrentThread() const
+{
+    glfwMakeContextCurrent(NULL);
+}
+void Window::swapBuffers() const
 {
     // logger::Info("Swapping buffer");
-    glfwSwapBuffers(m_glfw_window);
+    glfwSwapBuffers((GLFWwindow *)m_glfw_window);
 }
-const crystal::layout::Size &Window::getFrameBufferSize()
+const crystal::layout::Size &Window::getFrameBufferSize() const
 {
     return m_frame_buffer_size;
 }
-
+typedef void (*API)(void);
+void* Window::getGLLoadProc() const
+{
+    return (void*)glfwGetProcAddress;
+}
 void Window::addComponent() {}
 /**
  * Destroys the window by setting the `b_destroy_window_` flag to true.
  *
  * @throws None
  */
-void Window::destroyWindow() { m_destroy_window_flag = true; }
+void Window::destroyWindow()
+{
+    m_destroy_window_flag = true;
+}
 Window::~Window()
 {
-    glfwDestroyWindow(m_glfw_window);
+    glfwDestroyWindow((GLFWwindow *)m_glfw_window);
     glfwTerminate();
     logger::Success("Destroyed", "Window destroyed");
 }

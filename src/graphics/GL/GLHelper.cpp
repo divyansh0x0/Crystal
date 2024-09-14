@@ -1,4 +1,5 @@
 #include "crystal/graphics/GL/GLHelper.h"
+#include "glad/glad.h"
 std::string crystal::DecodeGLError(int error)
 {
     switch (error)

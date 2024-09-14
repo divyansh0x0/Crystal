@@ -1,13 +1,14 @@
 #include "crystal/graphics/GraphicsAPI.h"
 #include "crystal/graphics/GL/GLGraphicsContext.h"
+#include "crystal/graphics/WindowContext.h"
 
 namespace crystal::graphics{
 
-    GraphicsContext* GraphicsContext::create(GraphicsContextType api){
+    GraphicsContext* GraphicsContext::create(GraphicsContextType api,const WindowContext* context){
         
         switch(api){
             case GraphicsContextType::OpenGL:
-                return new OpenGLContext();
+                return new OpenGLContext(context);
             // case GraphicsContextType::DirectX:
             //     return new DirectXContext();
             // case GraphicsContextType::Vulkan:

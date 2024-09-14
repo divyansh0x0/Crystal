@@ -1,11 +1,12 @@
+#include <glad/glad.h>
 #include "crystal/core/Logger.h"
 #include "crystal/graphics/GL/GLHelper.h"
 #include "crystal/graphics/GL/GLShader.h"
 #include "crystal/graphics/Renderer.h"
+
 #include <cassert>
 #include <chrono>
 #include <cstdint>
-#include <glad/glad.h>
 
 #define LENGTH_OF(x) (sizeof(x) / sizeof(x[0]))
 unsigned int shaderID;
@@ -24,16 +25,7 @@ namespace crystal::graphics
 {
 void Renderer::renderingLoop()
 {
-    m_context_manager->switchContextToCurrentThread();
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
-        logger::Error("Failed to initialize GLAD");
-    }
-    else
-        logger::Success("GLAD Initialized");
-
-    long long a = 2222222222 + 22222222222222222 + 2222222222222222
-                  + 22222222222 + 11111111111111111;
+    m_graphics_context->init();
 
     unsigned int array_buffer_id;
     unsigned int index_buffer_id;
@@ -114,7 +106,7 @@ void Renderer::renderingLoop()
             timespent_micros = 0;
             frames_rendered  = 0;
         }
-        m_context_manager->swapBuffers();
+        m_window_context->swapBuffers();
         t1 = t2;
     }
     logger::Info("Destroying Renderer", "rendering loop ended");
@@ -135,7 +127,7 @@ void Renderer::render()
     r += i;
 
     crystal::layout::Size framebuffer_size =
-        m_context_manager->getFrameBufferSize();
+        m_window_context->getFrameBufferSize();
     GL_CALL(glViewport(0, 0, framebuffer_size.width, framebuffer_size.height));
     GL_CALL(glUniform4f(glGetUniformLocation(shaderID, "u_Color"), r, 0.3f,
                         0.8f, 1.0f));

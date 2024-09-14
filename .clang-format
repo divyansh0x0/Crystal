@@ -24,7 +24,6 @@ AlignTrailingComments:
   OverEmptyLines: 1
 
 AllowAllArgumentsOnNextLine: true
-
 AlignConsecutiveDeclarations: false
 PenaltyBreakAssignment: 100
 AllowShortBlocksOnASingleLine: false
@@ -35,25 +34,28 @@ AllowShortLambdasOnASingleLine: Inline
 AllowShortLoopsOnASingleLine: false
 AlwaysBreakBeforeMultilineStrings: false
 BinPackArguments: true
-BinPackParameters: AlwaysOnePerLine
-# BraceWrapping:
-#   AfterClass:      false
-#   AfterControlStatement: false
-#   AfterEnum:       false
-#   AfterFunction:   false
-#   AfterNamespace:  false
-#   AfterObjCDeclaration: false
-#   AfterStruct:     false
-#   AfterUnion:      false
-#   BeforeCatch:     false
-#   BeforeElse:      false
-#   IndentBraces:    false
+BinPackParameters: false
+BraceWrapping:
+  AfterClass:      false
+  AfterControlStatement: false
+  AfterEnum:       false
+  AfterFunction:   false
+  AfterNamespace:  false
+  AfterObjCDeclaration: false
+  AfterStruct:     false
+  AfterUnion:      false
+  BeforeCatch:     false
+  BeforeElse:      false
+  IndentBraces:    false
+
+BreakAdjacentStringLiterals: true
+BreakAfterAttributes: Never
 BreakBeforeBinaryOperators: NonAssignment
 BreakBeforeBraces: Allman
 BreakBeforeTernaryOperators: true
-BreakConstructorInitializersBeforeComma: false
-BreakAfterJavaFieldAnnotations: false
 BreakStringLiterals: true
+BreakInheritanceList: AfterComma
+BreakConstructorInitializersBeforeComma: false
 ColumnLimit:     80
 CommentPragmas:  '^ IWYU pragma:'
 ConstructorInitializerAllOnOneLineOrOnePerLine: false
@@ -62,8 +64,13 @@ ContinuationIndentWidth: 4
 Cpp11BracedListStyle: true
 DerivePointerAlignment: false
 DisableFormat:   false
+EmptyLineBeforeAccessModifier: LogicalBlock
 ExperimentalAutoDetectBinPacking: false
+
+
 ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH ]
+FixNamespaceComments: true
+IncludeBlocks:   Never
 IncludeCategories:
   - Regex:           '^"(llvm|llvm-c|clang|clang-c)/'
     Priority:        2
@@ -75,6 +82,7 @@ IncludeIsMainRegex: '$'
 IndentCaseLabels: false
 IndentWidth:     4
 IndentWrappedFunctionNames: false
+IndentAccessModifiers: true
 JavaScriptQuotes: Leave
 JavaScriptWrapImports: true
 KeepEmptyLinesAtTheStartOfBlocks: true

@@ -10,7 +10,8 @@ namespace crystal::graphics
     {
         if (!std::filesystem::exists(path))
         {
-            throw std::runtime_error("Shader not found:" + std::string(path));
+            logger::Error("Shader not found:" + std::string(path));
+            return "";
         }
         std::ifstream stream(path);
         std::string line;
@@ -19,7 +20,6 @@ namespace crystal::graphics
         {
             code += line + "\n";
         }
-        logger::Success(code);
         return code;
     };
 }
