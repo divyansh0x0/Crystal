@@ -1,0 +1,33 @@
+cmake_minimum_required(VERSION 3.5.0)
+project(crystal VERSION 0.1.0 LANGUAGES C CXX)
+cmake_minimum_required(VERSION 3.5.0)
+
+set(CRYSTAL_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
+
+# set source files based on folders
+set(CRYSTAL_CORE_SRC "src/core/Window.cpp" "src/core/Logger.cpp" "src/core/Engine.cpp")
+set(CRYSTAL_GEOMETRY_SRC "src/geometry/Matrix.cpp" "src/geometry/Vector3.cpp")
+set(CRYSTAL_UI_SRC)
+
+set(CRYSTAL_GRAPHICS_SRC "src/graphics/Color.cpp" "src/graphics/Buffer.cpp" "src/graphics/GraphicsAPI.cpp" "src/graphics/Renderer.cpp" "src/graphics/Shader.cpp" "src/graphics/VertexArray.cpp")
+set(CRYSTAL_GL_GRAPHICS_SRC "src/graphics/GL/GLGraphicsContext.cpp" "src/graphics/GL/GLHelper.cpp" "src/graphics/GL/GLShader.cpp")
+
+# reference all source files in one variable
+set(CRYSTAL_SOURCE_FILES ${CRYSTAL_CORE_SRC} ${CRYSTAL_GEOMETRY_SRC} ${CRYSTAL_UI_SRC} ${CRYSTAL_GRAPHICS_SRC} ${CRYSTAL_GL_GRAPHICS_SRC})
+
+# set include directories
+set(CRYSTAL_INCLUDE_DIRECTORIES ${CRYSTAL_DIRECTORY}/include)
+
+# dependencies
+add_subdirectory(external/glfw-3.4)
+add_subdirectory(external/glad)
+find_package(OpenGL REQUIRED)
+
+# include
+include_directories(${CRYSTAL_INCLUDE_DIRECTORIES})
+
+# build library
+add_library(crystal STATIC ${CRYSTAL_SOURCE_FILES})
+
+# linking
+target_link_libraries(crystal PRIVATE glfw OpenGL::GL glad)

@@ -1,7 +1,4 @@
 build
-bin
-lib
-crystal.code-workspace
+.cache
+.vs
 .vscode
-.vscode/settings.json
-.vscode/settings.json

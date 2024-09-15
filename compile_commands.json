@@ -1,0 +1,224 @@
+[
+{
+  "directory": "E:/Projects/Crystal/build/crystal",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/Quartz.dir/includes_CXX.rsp  -Wall -g -std=gnu++20 -o CMakeFiles\\Quartz.dir\\test.cpp.obj -c E:\\Projects\\Crystal\\test.cpp",
+  "file": "E:/Projects/Crystal/test.cpp",
+  "output": "CMakeFiles/Quartz.dir/test.cpp.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/crystal.dir/includes_CXX.rsp  -Wall -g -std=gnu++20 -o CMakeFiles\\crystal.dir\\src\\core\\Window.cpp.obj -c E:\\Projects\\Crystal\\crystal\\src\\core\\Window.cpp",
+  "file": "E:/Projects/Crystal/crystal/src/core/Window.cpp",
+  "output": "crystal/CMakeFiles/crystal.dir/src/core/Window.cpp.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/crystal.dir/includes_CXX.rsp  -Wall -g -std=gnu++20 -o CMakeFiles\\crystal.dir\\src\\core\\Logger.cpp.obj -c E:\\Projects\\Crystal\\crystal\\src\\core\\Logger.cpp",
+  "file": "E:/Projects/Crystal/crystal/src/core/Logger.cpp",
+  "output": "crystal/CMakeFiles/crystal.dir/src/core/Logger.cpp.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/crystal.dir/includes_CXX.rsp  -Wall -g -std=gnu++20 -o CMakeFiles\\crystal.dir\\src\\core\\Engine.cpp.obj -c E:\\Projects\\Crystal\\crystal\\src\\core\\Engine.cpp",
+  "file": "E:/Projects/Crystal/crystal/src/core/Engine.cpp",
+  "output": "crystal/CMakeFiles/crystal.dir/src/core/Engine.cpp.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/crystal.dir/includes_CXX.rsp  -Wall -g -std=gnu++20 -o CMakeFiles\\crystal.dir\\src\\geometry\\Matrix.cpp.obj -c E:\\Projects\\Crystal\\crystal\\src\\geometry\\Matrix.cpp",
+  "file": "E:/Projects/Crystal/crystal/src/geometry/Matrix.cpp",
+  "output": "crystal/CMakeFiles/crystal.dir/src/geometry/Matrix.cpp.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/crystal.dir/includes_CXX.rsp  -Wall -g -std=gnu++20 -o CMakeFiles\\crystal.dir\\src\\geometry\\Vector3.cpp.obj -c E:\\Projects\\Crystal\\crystal\\src\\geometry\\Vector3.cpp",
+  "file": "E:/Projects/Crystal/crystal/src/geometry/Vector3.cpp",
+  "output": "crystal/CMakeFiles/crystal.dir/src/geometry/Vector3.cpp.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/crystal.dir/includes_CXX.rsp  -Wall -g -std=gnu++20 -o CMakeFiles\\crystal.dir\\src\\graphics\\Color.cpp.obj -c E:\\Projects\\Crystal\\crystal\\src\\graphics\\Color.cpp",
+  "file": "E:/Projects/Crystal/crystal/src/graphics/Color.cpp",
+  "output": "crystal/CMakeFiles/crystal.dir/src/graphics/Color.cpp.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/crystal.dir/includes_CXX.rsp  -Wall -g -std=gnu++20 -o CMakeFiles\\crystal.dir\\src\\graphics\\Buffer.cpp.obj -c E:\\Projects\\Crystal\\crystal\\src\\graphics\\Buffer.cpp",
+  "file": "E:/Projects/Crystal/crystal/src/graphics/Buffer.cpp",
+  "output": "crystal/CMakeFiles/crystal.dir/src/graphics/Buffer.cpp.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/crystal.dir/includes_CXX.rsp  -Wall -g -std=gnu++20 -o CMakeFiles\\crystal.dir\\src\\graphics\\GraphicsAPI.cpp.obj -c E:\\Projects\\Crystal\\crystal\\src\\graphics\\GraphicsAPI.cpp",
+  "file": "E:/Projects/Crystal/crystal/src/graphics/GraphicsAPI.cpp",
+  "output": "crystal/CMakeFiles/crystal.dir/src/graphics/GraphicsAPI.cpp.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/crystal.dir/includes_CXX.rsp  -Wall -g -std=gnu++20 -o CMakeFiles\\crystal.dir\\src\\graphics\\Renderer.cpp.obj -c E:\\Projects\\Crystal\\crystal\\src\\graphics\\Renderer.cpp",
+  "file": "E:/Projects/Crystal/crystal/src/graphics/Renderer.cpp",
+  "output": "crystal/CMakeFiles/crystal.dir/src/graphics/Renderer.cpp.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/crystal.dir/includes_CXX.rsp  -Wall -g -std=gnu++20 -o CMakeFiles\\crystal.dir\\src\\graphics\\Shader.cpp.obj -c E:\\Projects\\Crystal\\crystal\\src\\graphics\\Shader.cpp",
+  "file": "E:/Projects/Crystal/crystal/src/graphics/Shader.cpp",
+  "output": "crystal/CMakeFiles/crystal.dir/src/graphics/Shader.cpp.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/crystal.dir/includes_CXX.rsp  -Wall -g -std=gnu++20 -o CMakeFiles\\crystal.dir\\src\\graphics\\VertexArray.cpp.obj -c E:\\Projects\\Crystal\\crystal\\src\\graphics\\VertexArray.cpp",
+  "file": "E:/Projects/Crystal/crystal/src/graphics/VertexArray.cpp",
+  "output": "crystal/CMakeFiles/crystal.dir/src/graphics/VertexArray.cpp.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/crystal.dir/includes_CXX.rsp  -Wall -g -std=gnu++20 -o CMakeFiles\\crystal.dir\\src\\graphics\\GL\\GLGraphicsContext.cpp.obj -c E:\\Projects\\Crystal\\crystal\\src\\graphics\\GL\\GLGraphicsContext.cpp",
+  "file": "E:/Projects/Crystal/crystal/src/graphics/GL/GLGraphicsContext.cpp",
+  "output": "crystal/CMakeFiles/crystal.dir/src/graphics/GL/GLGraphicsContext.cpp.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/crystal.dir/includes_CXX.rsp  -Wall -g -std=gnu++20 -o CMakeFiles\\crystal.dir\\src\\graphics\\GL\\GLHelper.cpp.obj -c E:\\Projects\\Crystal\\crystal\\src\\graphics\\GL\\GLHelper.cpp",
+  "file": "E:/Projects/Crystal/crystal/src/graphics/GL/GLHelper.cpp",
+  "output": "crystal/CMakeFiles/crystal.dir/src/graphics/GL/GLHelper.cpp.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/crystal.dir/includes_CXX.rsp  -Wall -g -std=gnu++20 -o CMakeFiles\\crystal.dir\\src\\graphics\\GL\\GLShader.cpp.obj -c E:\\Projects\\Crystal\\crystal\\src\\graphics\\GL\\GLShader.cpp",
+  "file": "E:/Projects/Crystal/crystal/src/graphics/GL/GLShader.cpp",
+  "output": "crystal/CMakeFiles/crystal.dir/src/graphics/GL/GLShader.cpp.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\context.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\context.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/context.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/context.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\init.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\init.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/init.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/init.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\input.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\input.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/input.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/input.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\monitor.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\monitor.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/monitor.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/monitor.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\platform.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\platform.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/platform.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/platform.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\vulkan.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\vulkan.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/vulkan.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/vulkan.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\window.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\window.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/window.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/window.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\egl_context.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\egl_context.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/egl_context.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/egl_context.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\osmesa_context.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\osmesa_context.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/osmesa_context.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/osmesa_context.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\null_init.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\null_init.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/null_init.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/null_init.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\null_monitor.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\null_monitor.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/null_monitor.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/null_monitor.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\null_window.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\null_window.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/null_window.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/null_window.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\null_joystick.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\null_joystick.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/null_joystick.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/null_joystick.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\win32_module.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\win32_module.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/win32_module.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/win32_module.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\win32_time.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\win32_time.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/win32_time.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/win32_time.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\win32_thread.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\win32_thread.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/win32_thread.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/win32_thread.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\win32_init.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\win32_init.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/win32_init.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/win32_init.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\win32_joystick.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\win32_joystick.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/win32_joystick.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/win32_joystick.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\win32_monitor.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\win32_monitor.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/win32_monitor.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/win32_monitor.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\win32_window.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\win32_window.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/win32_window.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/win32_window.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glfw-3.4/src",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -g -std=c99 -Wall -o CMakeFiles\\glfw.dir\\wgl_context.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glfw-3.4\\src\\wgl_context.c",
+  "file": "E:/Projects/Crystal/crystal/external/glfw-3.4/src/wgl_context.c",
+  "output": "crystal/external/glfw-3.4/src/CMakeFiles/glfw.dir/wgl_context.c.obj"
+},
+{
+  "directory": "E:/Projects/Crystal/build/crystal/crystal/external/glad",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\gcc.exe  @CMakeFiles/glad.dir/includes_C.rsp -g -o CMakeFiles\\glad.dir\\src\\glad.c.obj -c E:\\Projects\\Crystal\\crystal\\external\\glad\\src\\glad.c",
+  "file": "E:/Projects/Crystal/crystal/external/glad/src/glad.c",
+  "output": "crystal/external/glad/CMakeFiles/glad.dir/src/glad.c.obj"
+}
+]
