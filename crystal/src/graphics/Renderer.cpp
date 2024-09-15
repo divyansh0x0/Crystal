@@ -10,17 +10,16 @@
 
 #define LENGTH_OF(x) (sizeof(x) / sizeof(x[0]))
 unsigned int shaderID;
+static inline uint64_t getCurrentTimeNanos()
+{
+    return std::chrono::steady_clock::now().time_since_epoch().count();
+}
 struct vertex
 {
         float x;
         float y;
 };
-static uint64_t getCurrentTimeMicros()
-{
-    return std::chrono::duration_cast<std::chrono::microseconds>(
-               std::chrono::steady_clock::now().time_since_epoch())
-        .count();
-}
+
 namespace crystal::graphics
 {
 void Renderer::renderingLoop()
@@ -41,18 +40,18 @@ void Renderer::renderingLoop()
     unsigned int index_buffer_data[] = {0, 1, 2, 2, 3, 0};
     uint32_t VAO;
 
-    const char *frag = R"(#version 330 core
-layout(location = 0) out vec4 color;
-uniform vec4 u_Color;
-void main(){
-    color = u_Color;
-})";
-    const char *vert = R"(#version 330 core
-layout(location = 0) in vec4 a_position;
+    const char *frag = "#version 330 core\n"
+                       "layout(location = 0) out vec4 color;\n"
+                       "uniform vec4 u_Color;\n"
+                       "void main(){\n"
+                       "    color = u_Color;\n"
+                       "}";
+    const char *vert = "#version 330 core\n"
+                       "layout(location = 0) in vec4 a_position;\n"
 
-void main() {
-    gl_Position = a_position;
-})";
+                       "void main() {\n"
+                       "gl_Position = a_position;\n"
+                       "}\n";
     crystal::graphics::GLShader my_shader(vert, frag);
 
     GL_CALL(glGenVertexArrays(1, &VAO));
@@ -78,44 +77,50 @@ void main() {
     my_shader.activate();
     shaderID = my_shader.getID();
 
-    uint64_t timespent_micros     = 0;
-    uint64_t frames_rendered      = 0;
-    uint64_t one_second_in_micros = 1000'000;
+    uint64_t timespent_nanos     = 0;
+    uint64_t frames_rendered     = 0;
+    uint64_t one_second_in_nanos = 1000'000'000;
 
-    uint64_t t1 = getCurrentTimeMicros();
+    uint64_t t1 = getCurrentTimeNanos();
     if (!m_initialized_flag.load())
     {
-        logger::Error("Renderer not initialized");
+        logger::Error(
+            "Renderer",
+            "Renderer not initialized. Initialize the renderer first");
         return;
     }
-    logger::Success("rendering loop started");
+    logger::Success("Renderer", "Begining rendering loop");
 
     while (!m_destroyed_flag.load())
     {
-        uint64_t t2 = getCurrentTimeMicros();
+        uint64_t t2 = getCurrentTimeNanos();
         uint64_t dt = t2 - t1;
 
-        if (dt < one_second_in_micros / m_max_fps)
+        if (dt < one_second_in_nanos / m_max_fps)
         {
             continue;
         }
         render();
-        timespent_micros += dt;
+        timespent_nanos += dt;
         ++frames_rendered;
-        if (timespent_micros >= one_second_in_micros)
+        if (timespent_nanos >= one_second_in_nanos)
         {
-            logger::Info(std::string("FPS: ") + std::to_string(frames_rendered)
-                         + " | Timespent: " + std::to_string(timespent_micros)
-                         + "microsecond");
-            current_fps      = frames_rendered;
-            timespent_micros = 0;
-            frames_rendered  = 0;
+            // logger::Info(std::string("FPS: ") +
+            // std::to_string(frames_rendered)
+            //              + " | Timespent: " + std::to_string(timespent_nanos)
+            //              + "ns");
+            current_fps     = frames_rendered;
+            timespent_nanos = 0;
+            frames_rendered = 0;
         }
         m_window_context->swapBuffers();
         t1 = t2;
     }
-    logger::Info("Destroying Renderer", "rendering loop ended");
+    logger::Info("Renderer", "rendering loop ended");
+
+    m_graphics_context->dispose();
 }
+
 float r = 0;
 float i = 0.1;
 
@@ -144,15 +149,17 @@ void Renderer::render()
 
 Renderer::~Renderer()
 {
-    logger::Warn("Destroying Renderer", "Destroying renderer");
+    logger::Warn("Renderer", "Destroying renderer");
 
     m_destroyed_flag = true;
     m_render_thread->join();
     delete m_render_thread;
-    logger::Success("Destroying Renderer", "Deleted rendering thread");
     delete m_graphics_context;
-    logger::Success("Destroying Renderer", "Deleted graphics context");
+    m_window_context = nullptr;
+    m_render_thread  = nullptr;
+    m_graphics_context= nullptr;
+    logger::Info("Renderer", "Deleted rendering thread");
 
-    logger::Success("Destroying Renderer", "Renderer destroyed");
+    logger::Info("Renderer", "Renderer destroyed");
 }
 } // namespace crystal::graphics

@@ -4,9 +4,9 @@
 #include "crystal/graphics/GL/GLShader.h"
 #include "crystal/graphics/GraphicsAPI.h"
 #include "crystal/graphics/Renderer.h"
-
 #include <GLFW/glfw3.h>
 #include <chrono>
+#include <thread>
 
 float getCurrentTimeMs()
 {
@@ -31,17 +31,20 @@ Window::Window(const char *name,
 {
 
     glfwSetErrorCallback(GlfwErrorCallback);
-    if (glfwInit() == GLFW_FALSE) logger::Error("GLFW INITIALIZATION FAILED");
+    if (glfwInit() == GLFW_FALSE)
+    {
+        logger::Error("GLFW", "GLFW INITIALIZATION FAILED");
+        return;
+    }
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    logger::Success("GLFW Initialized");
+    logger::Success("GLFW", "GLFW Initialized");
 }
 void Window::show()
 {
-    //TODO: Memory skyrockets here
     m_glfw_window = glfwCreateWindow(m_frame_buffer_size.width,
                                      m_frame_buffer_size.height,
                                      m_window_name.data(), NULL, NULL);
@@ -57,7 +60,7 @@ void Window::show()
 
     if (!m_glfw_window)
     {
-        logger::Error("Failed to create GLFW window");
+        logger::Error("GLFW", "Failed to create GLFW window");
         glfwTerminate();
         return;
     }
@@ -84,15 +87,27 @@ void Window::frameBufferResizedCallback(int new_width, int new_height)
 
 void Window::switchContextToCurrentThread() const
 {
+    size_t thread_id = std::hash<std::thread::id>{}(std::this_thread::get_id());
     glfwMakeContextCurrent((GLFWwindow *)m_glfw_window);
     if ((GLFWwindow *)m_glfw_window == glfwGetCurrentContext())
-        logger::Success("Switched context to current thread");
+        logger::Info("GLFW",
+                     "Switched window context to thread " + std::to_string(thread_id));
     else
-        logger::Error("Failed to switch context to current thread");
+        logger::Error("GLFW", "Failed to switch window context to thread "
+                                  + std::to_string(thread_id));
 }
 void Window::detachContextFromCurrentThread() const
 {
+    size_t thread_id = std::hash<std::thread::id>{}(std::this_thread::get_id());
+    if ((GLFWwindow *)m_glfw_window != glfwGetCurrentContext())
+    {
+        logger::Error("GLFW", "Detach window context failed. The window context does not belong to this thread "
+                                  + std::to_string(thread_id));
+        return;
+    }
     glfwMakeContextCurrent(NULL);
+    logger::Info("GLFW",
+                 "Detached window context from thread " + std::to_string(thread_id));
 }
 void Window::swapBuffers() const
 {
@@ -120,8 +135,9 @@ void Window::destroyWindow()
 }
 Window::~Window()
 {
+    m_glfw_window = nullptr;
     glfwDestroyWindow((GLFWwindow *)m_glfw_window);
     glfwTerminate();
-    logger::Success("Destroyed", "Window destroyed");
+    logger::Success("GLFW", "GLFW window destroyed and terminated");
 }
 } // namespace crystal

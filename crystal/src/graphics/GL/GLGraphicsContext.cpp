@@ -16,7 +16,7 @@ OpenGLContext::OpenGLContext(const WindowContext *window_context)
 {
     if (window_context == nullptr)
     {
-        logger::Error("Window context cannot be null");
+        logger::Error("OpenGL","Window context cannot be null");
         return;
     }
     m_window_context = window_context;
@@ -24,15 +24,15 @@ OpenGLContext::OpenGLContext(const WindowContext *window_context)
 }
 void OpenGLContext::init()
 {
-    logger::Success("OpenGL graphics context initialized");
+    logger::Success("OpenGL", "Graphics context initialized");
     m_window_context->switchContextToCurrentThread();
     if (!gladLoadGLLoader((GLADloadproc)m_window_context->getGLLoadProc()))
     {
-        logger::Error("Failed to initialize GLAD");
+        logger::Error("GLAD","Failed to initialize GLAD");
         return;
     }
     else
-        logger::Success("GLAD Initialized");
+        logger::Success("GLAD","GLAD Initialized");
 
 
 }
@@ -43,8 +43,9 @@ void OpenGLContext::setIndexBuffer() {}
 void OpenGLContext::dispose()
 {
     m_window_context->detachContextFromCurrentThread();
+
     m_window_context = nullptr;
-    logger::Success("OpenGL graphics context destroyed");
+    logger::Info("OpenGL","Graphics context disposed");
 }
 OpenGLContext::~OpenGLContext()
 {

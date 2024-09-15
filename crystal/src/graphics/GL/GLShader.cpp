@@ -17,12 +17,15 @@ static unsigned int CompileShader(unsigned int type, const char* src_code)
         GL_CALL(glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length));
         char *message = (char *)alloca(length * sizeof(char));
         GL_CALL(glGetShaderInfoLog(id, length, &length, message));
-        logger::Error((type == GL_VERTEX_SHADER ? std::string("Vertex") : std::string("Fragment")) + " shader compilation failed"+ std::string(message));
-        logger::Error(src_code);
+        logger::Error("OpenGL",(type == GL_VERTEX_SHADER
+                                   ? std::string("Vertex")
+                                   : std::string("Fragment"))
+                      + " shader compilation failed" + std::string(message));
+        logger::Error("OpenGL",src_code);
     }
     else
     {
-        logger::Success((type == GL_VERTEX_SHADER ? std::string("Vertex") : std::string("Fragment")) + "shader compiled");
+        logger::Success("OpenGL",(type == GL_VERTEX_SHADER ? std::string("Vertex") : std::string("Fragment")) + "shader compiled");
     }
     return id;
 }
