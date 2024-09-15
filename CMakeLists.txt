@@ -6,14 +6,28 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 set(EXECUTABLE_OUTPUT_PATH "${CMAKE_BINARY_DIR}/out")
 set(LIBRARY_OUTPUT_PATH "${CMAKE_BINARY_DIR}/out/lib")
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+
+#Do some build optimization and checking
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -Og")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g -Og")
+
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -O3")
+#msvc hot reload 
+if(MSVC)
+    add_compile_options("/ZI")
+    add_link_options("/INCREMENTAL")
+endif()
+
+message("Building crystal with build type: ${CMAKE_BUILD_TYPE}")
+
 add_subdirectory(crystal)
-
-add_executable(Quartz test.cpp)
-
+add_executable(TestApp test.cpp)
 include_directories(crystal/include)
-
-
-target_link_libraries(Quartz crystal)
+target_link_libraries(TestApp crystal)
 
 
 #Need compile_commands.json in root folder so that clangd can pick it up

@@ -41,6 +41,7 @@ Window::Window(const char *name,
 }
 void Window::show()
 {
+    //TODO: Memory skyrockets here
     m_glfw_window = glfwCreateWindow(m_frame_buffer_size.width,
                                      m_frame_buffer_size.height,
                                      m_window_name.data(), NULL, NULL);
