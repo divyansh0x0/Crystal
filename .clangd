@@ -1,5 +1,10 @@
+InlayHints:
+  Enabled: Yes
+  ParameterNames: Yes
+  DeducedTypes: Yes
+  Designators: No
+
+AnalyzeAngledIncludes: Yes
 CompileFlags:
   Add:
-    - "-Iexternal/include"
-    - "-Iinclude" 
     - "-std=c++20"

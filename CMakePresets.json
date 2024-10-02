@@ -2,30 +2,62 @@
     "version": 8,
     "configurePresets": [
         {
-            "name": "crystal-debug",
+            "name": "Release",
+            "displayName": "Crystal - Release using Ninja",
+            "description": "Sets Ninja generator, build and install directory",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/${presetName}",
+            "cacheVariables": {
+                "CMAKE_MAKE_PROGRAM": "${sourceDir}/ninja",
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}"
+            }
+        },
+        {
+            "name": "Debug",
+            "displayName": "Crystal - Debug Using Ninja",
+            "description": "Sets Ninja generator, build and install directory",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/${presetName}",
+            "cacheVariables": {
+                "CMAKE_MAKE_PROGRAM": "${sourceDir}/ninja",
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}"
+            }
+        },
+        {
+            "name": "crystal-debug make",
             "displayName": "GCC Debug",
             "description": "Make debug compatible build using compilers: C = gcc, CXX = g++",
             "generator": "MinGW Makefiles",
-            "binaryDir": "${sourceDir}/build/debug",
+            "binaryDir": "${sourceDir}/out/debug",
             "cacheVariables": {
-                "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install/${presetName}",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
                 "CMAKE_C_COMPILER": "gcc",
                 "CMAKE_CXX_COMPILER": "g++",
                 "CMAKE_BUILD_TYPE": "Debug"
             }
         },
         {
-            "name": "crystal-release",
+            "name": "crystal-release make",
             "displayName": "GCC Release",
             "description": "Make a release build using compilers: C = gcc, CXX = g++",
             "generator": "MinGW Makefiles",
-            "binaryDir": "${sourceDir}/build/release",
+            "binaryDir": "${sourceDir}/out/release",
             "cacheVariables": {
-                "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install/${presetName}",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
                 "CMAKE_C_COMPILER": "gcc",
                 "CMAKE_CXX_COMPILER": "g++",
                 "CMAKE_BUILD_TYPE": "Release"
             }
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "GCC test",
+            "description": "",
+            "displayName": "",
+            "configurePreset": "crystal-debug make"
         }
     ]
 }

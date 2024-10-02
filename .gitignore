@@ -2,5 +2,6 @@ build
 .cache
 .vs
 .vscode
+out
 compile_commands.json
 CMakePresets.json

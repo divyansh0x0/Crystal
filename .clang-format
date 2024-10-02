@@ -3,12 +3,22 @@ AccessModifierOffset: -2
 AlignAfterOpenBracket: true
 
 AlignArrayOfStructures: Left
+
+AlignConsecutiveDeclarations:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+  AlignCompound: false
+  PadOperators: true
+  AlignFunctionPointers: false
+
+
 AlignConsecutiveAssignments:
   Enabled: true
   AcrossEmptyLines: false
   AcrossComments: false
   AlignCompound: true
-  PadOperators: false
+  PadOperators: true
   AlignFunctionPointers: false
 AlignConsecutiveMacros:
   Enabled: true
@@ -24,7 +34,6 @@ AlignTrailingComments:
   OverEmptyLines: 1
 
 AllowAllArgumentsOnNextLine: true
-AlignConsecutiveDeclarations: false
 PenaltyBreakAssignment: 100
 AllowShortBlocksOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false
@@ -34,7 +43,7 @@ AllowShortLambdasOnASingleLine: Inline
 AllowShortLoopsOnASingleLine: false
 AlwaysBreakBeforeMultilineStrings: false
 BinPackArguments: true
-BinPackParameters: false
+BinPackParameters: true
 BraceWrapping:
   AfterClass:      false
   AfterControlStatement: false
@@ -53,17 +62,18 @@ BreakAfterAttributes: Never
 BreakBeforeBinaryOperators: NonAssignment
 BreakBeforeBraces: Allman
 BreakBeforeTernaryOperators: true
-BreakStringLiterals: true
+BreakStringLiterals: false
 BreakInheritanceList: AfterComma
 BreakConstructorInitializersBeforeComma: false
-ColumnLimit:     80
+
+ColumnLimit:     150
+ContinuationIndentWidth: 4
+ConstructorInitializerIndentWidth: 4
+
 CommentPragmas:  '^ IWYU pragma:'
 ConstructorInitializerAllOnOneLineOrOnePerLine: false
-ConstructorInitializerIndentWidth: 4
-ContinuationIndentWidth: 4
 Cpp11BracedListStyle: true
 DerivePointerAlignment: false
-DisableFormat:   false
 EmptyLineBeforeAccessModifier: LogicalBlock
 ExperimentalAutoDetectBinPacking: false
 
@@ -78,30 +88,31 @@ IncludeCategories:
   - Regex:           '.*'
     Priority:        1
 IncludeIsMainRegex: '$'
-IndentCaseLabels: false
+IndentCaseLabels: true
 IndentWidth:     4
-IndentWrappedFunctionNames: false
+IndentWrappedFunctionNames: true
 IndentAccessModifiers: true
 JavaScriptQuotes: Leave
 JavaScriptWrapImports: true
 KeepEmptyLinesAtTheStartOfBlocks: true
 MacroBlockBegin: ''
 MacroBlockEnd:   ''
-MaxEmptyLinesToKeep: 1
+MaxEmptyLinesToKeep: 2
 NamespaceIndentation: None
 ObjCBlockIndentWidth: 2
 ObjCSpaceAfterProperty: false
 ObjCSpaceBeforeProtocolList: true
-PenaltyBreakBeforeFirstCallParameter: 19
+PenaltyBreakBeforeFirstCallParameter: 180
 PenaltyBreakComment: 300
 PenaltyBreakFirstLessLess: 120
 PenaltyBreakString: 1000
 PenaltyExcessCharacter: 1000000
-PenaltyReturnTypeOnItsOwnLine: 60
-PointerAlignment: Right
+PenaltyReturnTypeOnItsOwnLine: 180
+
+PointerAlignment: Left
+
 ReflowComments:  true
-SortIncludes:    true
-SpaceAfterCStyleCast: false
+SpaceAfterCStyleCast: true
 SpaceAfterTemplateKeyword: true
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeParens: ControlStatements
@@ -113,5 +124,5 @@ SpacesInCStyleCastParentheses: false
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
 Standard:        Cpp11
-TabWidth:        8
+TabWidth:        4
 UseTab:          Never

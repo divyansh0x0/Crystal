@@ -1,13 +1,12 @@
 #include "crystal/geometry/Vector3.h"
+#include "crystal/core/Logger.h"
 #include <cmath>
-#include <stdexcept>
-#include <vector>
 static float FastInverseSqrt(float num)
 {
     union
     {
             float f;
-            long i;
+            long  i;
     } conv;
 
     const float threehalfs = 1.5F;
@@ -22,11 +21,11 @@ static float FastInverseSqrt(float num)
 namespace crystal::geometry
 {
 
-Vector3 Vector3::operator+(const Vector3 &other) const
+Vector3 Vector3::operator+(const Vector3& other) const
 {
     return Vector3(x + other.x, y + other.y, z + other.z);
 }
-Vector3 &Vector3::operator+=(const Vector3 &other)
+Vector3& Vector3::operator+=(const Vector3& other)
 {
     x += other.x;
     y += other.y;
@@ -34,12 +33,12 @@ Vector3 &Vector3::operator+=(const Vector3 &other)
     return *this;
 }
 
-Vector3 Vector3::operator-(const Vector3 &other) const
+Vector3 Vector3::operator-(const Vector3& other) const
 {
     return Vector3(x - other.x, y - other.y, z - other.z);
 }
 
-Vector3 &Vector3::operator-=(const Vector3 &other)
+Vector3& Vector3::operator-=(const Vector3& other)
 {
     x -= other.x;
     y -= other.y;
@@ -50,7 +49,7 @@ Vector3 Vector3::operator*(const float scalar) const
 {
     return Vector3(x * scalar, y * scalar, z * scalar);
 }
-Vector3 &Vector3::operator*=(const float scalar)
+Vector3& Vector3::operator*=(const float scalar)
 {
     x *= scalar;
     y *= scalar;
@@ -63,24 +62,24 @@ float Vector3::operator[](const size_t index) const
 {
     switch (index)
     {
-    case 0:
-        return x;
-    case 1:
-        return y;
-    case 2:
-        return z;
-    default:
-        throw std::range_error("Index out of range");
+        case 0:
+            return x;
+        case 1:
+            return y;
+        case 2:
+            return z;
+        default:
+            logger::Error("Index out of range");
+            return 0;
     }
 }
 
 // cross product
-Vector3 Vector3::operator*(const Vector3 &other) const
+Vector3 Vector3::operator*(const Vector3& other) const
 {
-    return Vector3(y * other.z - z * other.y, z * other.x - x * other.z,
-                   x * other.y - y * other.x);
+    return Vector3(y * other.z - z * other.y, z * other.x - x * other.z, x * other.y - y * other.x);
 }
-Vector3 &Vector3::operator*=(const Vector3 &other)
+Vector3& Vector3::operator*=(const Vector3& other)
 {
     *this = *this * other;
     return *this;
@@ -90,7 +89,7 @@ Vector3 Vector3::operator/(const float scalar) const
 {
     return Vector3(x / scalar, y / scalar, z / scalar);
 }
-Vector3 &Vector3::operator/=(const float scalar)
+Vector3& Vector3::operator/=(const float scalar)
 {
     x /= scalar;
     y /= scalar;
@@ -100,7 +99,7 @@ Vector3 &Vector3::operator/=(const float scalar)
 
 // copy
 
-Vector3 &Vector3::operator=(const Vector3 &other)
+Vector3& Vector3::operator=(const Vector3& other)
 {
     x = other.x;
     y = other.y;
@@ -109,20 +108,20 @@ Vector3 &Vector3::operator=(const Vector3 &other)
 }
 // equality
 
-bool Vector3::operator==(const Vector3 &other) const
+bool Vector3::operator==(const Vector3& other) const
 {
     return x == other.x && y == other.y && z == other.z;
 }
-bool Vector3::operator!=(const Vector3 &other) const
+bool Vector3::operator!=(const Vector3& other) const
 {
     return !(*this == other);
 }
 
-float Vector3::dot(const Vector3 &other) const
+float Vector3::dot(const Vector3& other) const
 {
     return x * other.x + y * other.y + z * other.z;
 }
-Vector3 Vector3::cross(const Vector3 &other) const
+Vector3 Vector3::cross(const Vector3& other) const
 {
     return *this * other;
 }
@@ -142,32 +141,30 @@ Vector3 Vector3::normalize() const
     return *this * FastInverseSqrt(x * x + y * y + z * z);
 }
 
-float Vector3::getAngle(const Vector3 &other) const
+float Vector3::getAngle(const Vector3& other) const
 {
     return std::acos(dot(other) / (magnitude() * other.magnitude()));
 }
-float Vector3::getDistance(const Vector3 &other) const
+float Vector3::getDistance(const Vector3& other) const
 {
     return (other - *this).magnitude();
 }
 
-float Vector3::getDistanceSquared(const Vector3 &other) const
+float Vector3::getDistanceSquared(const Vector3& other) const
 {
     return (other - *this).squaredMagnitude();
 }
 
-Matrix Vector3::getColumnMatrix() const
+Matrix Vector3::getColumnMatrix()
 {
-    std::vector<std::vector<float>> arr = {
-        {x, {y}, {z}}
-    };
-    return Matrix(arr);
+
+
+    return Matrix({{x}, {y}, {z}});
 }
 
 std::string Vector3::toString() const
 {
-    return "(" + std::to_string(x) + "," + std::to_string(y) + ","
-           + std::to_string(z) + ")";
+    return "(" + std::to_string(x) + "," + std::to_string(y) + "," + std::to_string(z) + ")";
 }
 
 } // namespace crystal::geometry

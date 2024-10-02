@@ -1,7 +1,5 @@
 #pragma once
 #include "crystal/geometry/Matrix.h"
-#include <cmath>
-
 namespace crystal::geometry
 {
 /**
@@ -19,9 +17,6 @@ class Vector3
         Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
         Vector3(const Vector3 &other) : x(other.x), y(other.y), z(other.z) {}
 
-        Vector3(const std::vector<float> &arr) : x(arr[0]), y(arr[1]), z(arr[2])
-        {
-        }
         Vector3(const float arr[3]) : x(arr[0]), y(arr[1]), z(arr[2]) {};
         Vector3() : x(0), y(0), z(0) {}
 
@@ -57,7 +52,7 @@ class Vector3
         float getX() const { return x; };
         float getY() const { return y; };
         float getZ() const { return z; };
-        Matrix getColumnMatrix() const;
+        Matrix getColumnMatrix();
         std::string toString() const;
 };
 
