@@ -1,8 +1,11 @@
-Language:        Cpp
+Language: Cpp
 AccessModifierOffset: -2
 AlignAfterOpenBracket: true
 
 AlignArrayOfStructures: Left
+
+
+ColumnLimit: 120
 
 AlignConsecutiveDeclarations:
   Enabled: true
@@ -10,23 +13,18 @@ AlignConsecutiveDeclarations:
   AcrossComments: false
   AlignCompound: false
   PadOperators: true
-  AlignFunctionPointers: false
-
-
 AlignConsecutiveAssignments:
   Enabled: true
   AcrossEmptyLines: false
   AcrossComments: false
   AlignCompound: true
   PadOperators: true
-  AlignFunctionPointers: false
 AlignConsecutiveMacros:
   Enabled: true
   AcrossEmptyLines: false
   AcrossComments: false
   AlignCompound: true
   PadOperators: false
-  AlignFunctionPointers: false
 AlignEscapedNewlines: Left
 AlignOperands: Align
 AlignTrailingComments:
@@ -34,7 +32,6 @@ AlignTrailingComments:
   OverEmptyLines: 1
 
 AllowAllArgumentsOnNextLine: true
-PenaltyBreakAssignment: 100
 AllowShortBlocksOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: Inline
@@ -42,87 +39,55 @@ AllowShortIfStatementsOnASingleLine: WithoutElse
 AllowShortLambdasOnASingleLine: Inline
 AllowShortLoopsOnASingleLine: false
 AlwaysBreakBeforeMultilineStrings: false
-BinPackArguments: true
-BinPackParameters: true
-BraceWrapping:
-  AfterClass:      false
-  AfterControlStatement: false
-  AfterEnum:       false
-  AfterFunction:   false
-  AfterNamespace:  false
-  AfterObjCDeclaration: false
-  AfterStruct:     false
-  AfterUnion:      false
-  BeforeCatch:     false
-  BeforeElse:      false
-  IndentBraces:    false
 
-BreakAdjacentStringLiterals: true
-BreakAfterAttributes: Never
-BreakBeforeBinaryOperators: NonAssignment
+BinPackArguments: true
+BinPackParameters: false
+
+BraceWrapping:
+  AfterClass: true
+  AfterControlStatement: true
+  AfterFunction: true
+  AfterNamespace: true
+  BeforeElse: true
+  IndentBraces: true
+  SplitEmptyFunction: true
+
 BreakBeforeBraces: Allman
+BreakBeforeBinaryOperators: NonAssignment
 BreakBeforeTernaryOperators: true
-BreakStringLiterals: false
+BreakStringLiterals: true
 BreakInheritanceList: AfterComma
 BreakConstructorInitializersBeforeComma: false
 
-ColumnLimit:     150
 ContinuationIndentWidth: 4
 ConstructorInitializerIndentWidth: 4
 
-CommentPragmas:  '^ IWYU pragma:'
-ConstructorInitializerAllOnOneLineOrOnePerLine: false
-Cpp11BracedListStyle: true
-DerivePointerAlignment: false
-EmptyLineBeforeAccessModifier: LogicalBlock
-ExperimentalAutoDetectBinPacking: false
-
-
-ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH ]
-FixNamespaceComments: true
 IncludeCategories:
-  - Regex:           '^"(llvm|llvm-c|clang|clang-c)/'
-    Priority:        2
-  - Regex:           '^(<|"(gtest|isl|json)/)'
-    Priority:        3
-  - Regex:           '.*'
-    Priority:        1
+  - Regex: '^<.*>'
+    Priority: 1
+  - Regex: '^"(crystal/.*)"'
+    Priority: 2
+  - Regex: '^.*'
+    Priority: 3
 IncludeIsMainRegex: '$'
 IndentCaseLabels: true
-IndentWidth:     4
+IndentWidth: 4
 IndentWrappedFunctionNames: true
 IndentAccessModifiers: true
-JavaScriptQuotes: Leave
-JavaScriptWrapImports: true
 KeepEmptyLinesAtTheStartOfBlocks: true
-MacroBlockBegin: ''
-MacroBlockEnd:   ''
 MaxEmptyLinesToKeep: 2
-NamespaceIndentation: None
-ObjCBlockIndentWidth: 2
-ObjCSpaceAfterProperty: false
-ObjCSpaceBeforeProtocolList: true
-PenaltyBreakBeforeFirstCallParameter: 180
-PenaltyBreakComment: 300
-PenaltyBreakFirstLessLess: 120
-PenaltyBreakString: 1000
-PenaltyExcessCharacter: 1000000
-PenaltyReturnTypeOnItsOwnLine: 180
+NamespaceIndentation: All
 
 PointerAlignment: Left
-
-ReflowComments:  true
+ReflowComments: true
 SpaceAfterCStyleCast: true
 SpaceAfterTemplateKeyword: true
 SpaceBeforeAssignmentOperators: true
-SpaceBeforeParens: ControlStatements
-SpaceInEmptyParentheses: false
-SpacesBeforeTrailingComments: 1
-SpacesInAngles:  false
+SpaceBeforeParens: Always
+SpacesInAngles: false
 SpacesInContainerLiterals: true
-SpacesInCStyleCastParentheses: false
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
-Standard:        Cpp11
-TabWidth:        4
-UseTab:          Never
+Standard: Cpp11
+TabWidth: 4
+UseTab: Never

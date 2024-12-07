@@ -1,15 +1,8 @@
+#include "crystal/geometry/Matrix.h" // Include the appropriate header for the Matrix class
 #include <cmath>
 #include <gtest/gtest.h>
-#include "crystal/geometry/Matrix.h" // Include the appropriate header for the Matrix class
-
 
 using namespace crystal::geometry;
-int main (int argc, char** argv)
-{
-    ::testing::InitGoogleTest (&argc, argv);
-    return RUN_ALL_TESTS ();
-}
-
 
 // Test the constructors
 TEST (MatrixTest, EqualityTest)
@@ -128,7 +121,7 @@ TEST (MatrixTest, SubtractionTest)
     Matrix result = M1 - M2;
     EXPECT_EQ (result.at (0, 0), 8) << "Expected result.at(0, 0) to be 8 after subtraction.";
     EXPECT_EQ (result.at (1, 1), 0) << "Expected result.at(1, 1) to be 0 after subtraction.";
-    EXPECT_EQ (result.at (2, 2), -8) << "Expected result.at(2, 2) to be -8 after subtraction.";
+    EXPECT_EQ (result.at (2, 1), -6) << "Expected result.at(2, 1) to be -6 after subtraction.";
 
     // Subtracting matrices of different sizes (should return NaN)
     Matrix M3             = Matrix ({
@@ -148,10 +141,10 @@ TEST (MatrixTest, SubtractionTest)
         {5, 6},
         {7, 8}
     });
-    EXPECT_EQ (A - B, (B - A)) << "Matrix subtraction should be commutative.";
+    EXPECT_EQ (A - B, -1 * (B - A)) << "Expected A-B to be same as -(B-A).";
 }
 
-TEST (MatrixTest, MultiplicationTest)
+TEST (MatrixTest, MatrixMultiplicationTest)
 {
     Matrix M1 = Matrix ({
         {1, 2},
@@ -170,21 +163,22 @@ TEST (MatrixTest, MultiplicationTest)
     EXPECT_EQ (result.at (1, 1), 8) << "Expected result.at(1, 1) to be 8 after multiplication.";
 
     // Invalid multiplication (dimension mismatch)
-    Matrix M3           = Matrix ({
+    Matrix M3   = Matrix ({
         {1, 2, 3},
         {4, 5, 6}
     });
-    Matrix resultOfM1M3 = Matrix ({
+    Matrix M1M3 = Matrix ({
         {9,  12, 15},
         {19, 26, 33}
     }
 
     );
-    EXPECT_EQ (M1 * M3, resultOfM1M3) << "Expected M1*M3 to be resultOfM1M3.";
+    EXPECT_EQ (M1 * M3, M1M3) << "Invalid matrix multiplication";
     // Multiplying matrices of different sizes (should return NaN)
-    Matrix result_invalid = M3 * M1; // Should handle size mismatch
-    EXPECT_TRUE (std::isnan (result_invalid.at (0, 0)))
-        << "Expected result_invalid.at(0, 0) to be NaN for size mismatch.";
+    Matrix M3M1 = M3 * M1; // Should handle size mismatch
+
+    EXPECT_TRUE (std::isnan (M3M1.at (0, 0)) && (M3M1.getNumCols () & M3M1.getNumRows ()) == 0)
+        << "Expected M3M1.at(0, 0) to be NaN and size of M3M1 to be 0x0 for size mismatch.";
 }
 
 TEST (MatrixTest, ScalarMultiplicationTest)
@@ -199,25 +193,27 @@ TEST (MatrixTest, ScalarMultiplicationTest)
     EXPECT_EQ (result.at (0, 1), 4) << "Expected result.at(0, 1) to be 4 after scalar multiplication.";
     EXPECT_EQ (result.at (1, 0), 6) << "Expected result.at(1, 0) to be 6 after scalar multiplication.";
     EXPECT_EQ (result.at (1, 1), 8) << "Expected result.at(1, 1) to be 8 after scalar multiplication.";
+}
 
-    Matrix M2 = Matrix ({
+TEST (MatrixTest, ScalarDivisionTest)
+{
+    Matrix M1 = Matrix ({
         {2, 4},
         {6, 8}
     });
 
     // Valid division
-    Matrix result2 = M2 / 2.0f;
+    Matrix result = M1 / 2.0f;
     EXPECT_EQ (result.at (0, 0), 1) << "Expected result.at(0, 0) to be 1 after scalar division.";
     EXPECT_EQ (result.at (0, 1), 2) << "Expected result.at(0, 1) to be 2 after scalar division.";
     EXPECT_EQ (result.at (1, 0), 3) << "Expected result.at(1, 0) to be 3 after scalar division.";
     EXPECT_EQ (result.at (1, 1), 4) << "Expected result.at(1, 1) to be 4 after scalar division.";
 
     // Division by zero
-    Matrix result_invalid = M2 / 0.0f; // Should return NaN
+    Matrix result_invalid = M1 / 0.0f; // Should return NaN
     EXPECT_TRUE (std::isnan (result_invalid.at (0, 0)))
         << "Expected result_invalid.at(0, 0) to be NaN for division by zero.";
 }
-
 
 TEST (MatrixTest, TransposeTest)
 {
@@ -294,3 +290,8 @@ TEST (MatrixTest, IdentityMatrixTest)
     EXPECT_EQ (identity.at (2, 1), 0);
 }
 // Main function to run all tests
+int main (int argc, char** argv)
+{
+    ::testing::InitGoogleTest (&argc, argv);
+    return RUN_ALL_TESTS ();
+}

@@ -1,0 +1,20 @@
+{
+  "folders": [
+    {
+      "name": "src",
+      "path": "crystal/src"
+    },
+    {
+      "name": "crystal",
+      "path": "crystal/include/crystal"
+    },
+    {
+      "name": "tests",
+      "path": "tests"
+    },
+    {
+      "name": "Crystal",
+      "path": "."
+    }
+  ]
+}

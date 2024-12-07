@@ -4,7 +4,7 @@ InlayHints:
   DeducedTypes: Yes
   Designators: No
 
-AnalyzeAngledIncludes: Yes
+# AnalyzeAngledIncludes: Yes
 CompileFlags:
   Add:
     - "-std=c++20"
