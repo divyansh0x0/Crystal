@@ -1,52 +1,53 @@
-#include "crystal/graphics/Graphics.h"
-#include "crystal/graphics/GL/GLRenderer.h"
+#include "crystal/graphics/Graphics.hpp"
+#include "crystal/graphics/GL/GLRenderer.hpp"
+
 namespace crystal::graphics
 {
-Renderer* CreateRenderer(API api)
-{
-    switch (api)
+    Renderer* CreateRenderer (API api)
     {
+        switch (api)
+        {
 
-    case API::OpenGL:   
-    case API::Vulkan:
-    case API::DirectX:
-        return new GLRenderer();
+            case API::OpenGL:
+            case API::Vulkan:
+            case API::DirectX:
+                return new GLRenderer ();
+        }
+        return nullptr;
     }
-    return nullptr;
-}
 
-// /*****************************************************************************/
-//                             // DIRECTX CONTEXT
-// /*****************************************************************************/
-// DirectXContext::DirectXContext(){
-// }
-// void DirectXContext::begin(){
+    // /*****************************************************************************/
+    //                             // DIRECTX CONTEXT
+    // /*****************************************************************************/
+    // DirectXContext::DirectXContext(){
+    // }
+    // void DirectXContext::begin(){
 
-// }
-// void DirectXContext::end(){
+    // }
+    // void DirectXContext::end(){
 
-// }
-// void DirectXContext::setVertexBuffer(){
+    // }
+    // void DirectXContext::setVertexBuffer(){
 
-// }
-// void DirectXContext::setIndexBuffer(){
+    // }
+    // void DirectXContext::setIndexBuffer(){
 
-// }
-// /*****************************************************************************/
-//                             // VULKAN CONTEXT
-// /*****************************************************************************/
-// VulkanContext::VulkanContext(){
-// }
-// void DirectXContext::begin(){
+    // }
+    // /*****************************************************************************/
+    //                             // VULKAN CONTEXT
+    // /*****************************************************************************/
+    // VulkanContext::VulkanContext(){
+    // }
+    // void DirectXContext::begin(){
 
-// }
-// void VulkanContext::end(){
+    // }
+    // void VulkanContext::end(){
 
-// }
-// void VulkanContext::setVertexBuffer(){
+    // }
+    // void VulkanContext::setVertexBuffer(){
 
-// }
-// void VulkanContext::setIndexBuffer(){
+    // }
+    // void VulkanContext::setIndexBuffer(){
 
-// }
+    // }
 } // namespace crystal::graphics

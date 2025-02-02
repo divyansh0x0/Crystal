@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "crystal/geometry/Vector3.h"
+#include "crystal/geometry/Vector3.hpp"
 
 
 using namespace crystal::geometry;

@@ -1,8 +1,8 @@
-#include "crystal/graphics/GL/GLRenderer.h"
+#include "crystal/graphics/GL/GLRenderer.hpp"
 #include <glad/glad.h>
-#include "crystal/core/Logger.h"
-#include "crystal/graphics/GL/GLHelper.h"
-#include "crystal/graphics/GL/GLShader.h"
+#include "crystal/core/Logger.hpp"
+#include "crystal/graphics/GL/GLHelper.hpp"
+#include "crystal/graphics/GL/GLShader.hpp"
 
 
 #include <cassert>
@@ -18,6 +18,7 @@ namespace crystal::graphics
             float x;
             float y;
     };
+
     void GLRenderer::init (WindowContext& window_context)
     {
 
@@ -33,8 +34,9 @@ namespace crystal::graphics
         m_initialized_flag = true;
         m_destroyed_flag   = false;
 
-        unsigned int array_buffer_id;
+        unsigned int vertex_buffer_id;
         unsigned int index_buffer_id;
+
 
         // float vertex_buffer_data[] = {-0.5f, -0.5f, 0.5f,  -0.5f,       0.5, 0.5,
         // 0.5,   0.5,   -0.5f, 0.5f, - 0.5f, -0.5f};
@@ -64,16 +66,16 @@ namespace crystal::graphics
         GL_CALL (glGenVertexArrays (1, &VAO));
         GL_CALL (glBindVertexArray (VAO));
 
-        // Generate buffer and bind it to array buffer
-        GL_CALL (glGenBuffers (1, &array_buffer_id));
-        GL_CALL (glBindBuffer (GL_ARRAY_BUFFER, array_buffer_id));
+        // Generate buffer and bind it to array buffer (vertex buffer)
+        GL_CALL (glGenBuffers (1, &vertex_buffer_id));
+        GL_CALL (glBindBuffer (GL_ARRAY_BUFFER, vertex_buffer_id));
         GL_CALL (glBufferData (GL_ARRAY_BUFFER, sizeof (float) * 6 * 2, vertex_buffer_data, GL_STATIC_DRAW));
         // Bind position attribute
         GL_CALL (glEnableVertexAttribArray (0));
 
         GL_CALL (glVertexAttribPointer (0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof (float), 0));
 
-        // Generate and ind index buffer
+        // Generate and bind index buffer
         GL_CALL (glGenBuffers (1, &index_buffer_id));
         GL_CALL (glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, index_buffer_id));
 
@@ -81,6 +83,7 @@ namespace crystal::graphics
         my_shader.activate ();
         shaderID = my_shader.getID ();
     }
+
     float r = 0;
     float i = 0.1;
 
@@ -92,9 +95,12 @@ namespace crystal::graphics
 
         crystal::layout::Size framebuffer_size = m_window_context->getFrameBufferSize ();
         GL_CALL (glViewport (0, 0, framebuffer_size.width, framebuffer_size.height));
-        GL_CALL (glUniform4f (glGetUniformLocation (shaderID, "u_Color"), r, 0.3f, 0.8f, 1.0f));
-
+        GL_CALL (glUniform4f (glGetUniformLocation (shaderID, "u_Color"), r, 0.3f, 0.8f, 0.5f));
+        auto bg = m_window_context->getFrameBufferBg().getRGBA();
+        logger::Info(bg);
+        GL_CALL(glClearColor(bg.r,bg.g, bg.b, bg.a));
         GL_CALL (glClear (GL_COLOR_BUFFER_BIT));
+
         GL_CALL (glDrawElements (GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
         // GL_CALL(glDrawArrays(GL_TRIANGLES, 0, 6));
     }
@@ -113,6 +119,7 @@ namespace crystal::graphics
 
         logger::Info ("Renderer", "Renderer destroyed");
     }
+
     GLRenderer::~GLRenderer ()
     {
         this->destroy ();

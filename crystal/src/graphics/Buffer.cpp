@@ -1,4 +1,4 @@
-#include "crystal/graphics/Buffer.h"
+#include "crystal/graphics/Buffer.hpp"
 
 namespace crystal::graphics
 {

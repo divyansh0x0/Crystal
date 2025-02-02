@@ -1,15 +1,9 @@
 #include <cmath>
 #include <gtest/gtest.h>
-#include "crystal/geometry/Matrix.h" // Include the appropriate header for the Matrix class
+#include "crystal/geometry/Matrix.hpp" // Include the appropriate header for the Matrix class
 
 
 using namespace crystal::geometry;
-int main (int argc, char** argv)
-{
-    ::testing::InitGoogleTest (&argc, argv);
-    return RUN_ALL_TESTS ();
-}
-
 
 // Test the constructors
 TEST (MatrixTest, EqualityTest)
@@ -218,7 +212,6 @@ TEST (MatrixTest, ScalarMultiplicationTest)
         << "Expected result_invalid.at(0, 0) to be NaN for division by zero.";
 }
 
-
 TEST (MatrixTest, TransposeTest)
 {
     Matrix M1       = Matrix ({
@@ -282,6 +275,7 @@ TEST (MatrixTest, InverseTest)
     EXPECT_TRUE (std::isnan (result_invalid.at (0, 0)))
         << "Expected result_invalid.at(0, 0) to be NaN for singular matrix.";
 }
+
 TEST (MatrixTest, IdentityMatrixTest)
 {
     Matrix identity = Matrix::identity (3, 3); // Assuming identity method is implemented
@@ -293,4 +287,3 @@ TEST (MatrixTest, IdentityMatrixTest)
     EXPECT_EQ (identity.at (1, 2), 0);
     EXPECT_EQ (identity.at (2, 1), 0);
 }
-// Main function to run all tests

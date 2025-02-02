@@ -1,4 +1,4 @@
-#include "crystal/core/Logger.h"
+#include "crystal/core/Logger.hpp"
 #include <iostream>
 // #include <string.h>
 // #include <iostream>
@@ -12,43 +12,43 @@
 
 namespace logger
 {
-void Info(const std::string &type, const std::string &s)
-{
-    std::cout << CYAN << "[" << type << "] " << s << RESET << std::endl;
-}
+    void Info (const std::string& type, const std::string& s)
+    {
+        std::cout << CYAN << "[" << type << "] " << s << RESET << "\n";
+    }
 
-void Info(const std::string &s)
-{
-    Info("MESSAGE", s);
-}
+    void Info (const std::string& s)
+    {
+        Info ("MESSAGE", s);
+    }
 
-void Error(const std::string &type, const std::string &s)
-{
-    std::cout << RED << "[" << type << "] " << s << RESET << std::endl;
-}
+    void Error (const std::string& type, const std::string& s)
+    {
+        std::cout << RED << "[" << type << "] " << s << RESET << "\n";
+    }
 
-void Error(const std::string &s)
-{
-    Error("ERROR", s);
-}
+    void Error (const std::string& s)
+    {
+        Error ("ERROR", s);
+    }
 
-void Warn(const std::string &type, const std::string &s)
-{
-    std::cout << YELLOW << "[" << type << "] " << s << RESET << std::endl;
-}
+    void Warn (const std::string& type, const std::string& s)
+    {
+        std::cout << YELLOW << "[" << type << "] " << s << RESET << "\n";
+    }
 
-void Warn(const std::string &s)
-{
-    Warn("WARN", s);
-}
+    void Warn (const std::string& s)
+    {
+        Warn ("WARN", s);
+    }
 
-void Success(const std::string &type, const std::string &s)
-{
-    std::cout << GREEN << "[" << type << "] " << s << RESET << std::endl;
-}
+    void Success (const std::string& type, const std::string& s)
+    {
+        std::cout << GREEN << "[" << type << "] " << s << RESET << "\n";
+    }
 
-void Success(const std::string &s)
-{
-    Success("SUCCESS", s);
-}
+    void Success (const std::string& s)
+    {
+        Success ("SUCCESS", s);
+    }
 } // namespace logger

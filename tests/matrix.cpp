@@ -1,4 +1,4 @@
-#include "crystal/geometry/Matrix.h" // Include the appropriate header for the Matrix class
+#include "crystal/geometry/Matrix.hpp" // Include the appropriate header for the Matrix class
 #include <cmath>
 #include <gtest/gtest.h>
 
@@ -278,9 +278,10 @@ TEST (MatrixTest, InverseTest)
     EXPECT_TRUE (std::isnan (result_invalid.at (0, 0)))
         << "Expected result_invalid.at(0, 0) to be NaN for singular matrix.";
 }
+
 TEST (MatrixTest, IdentityMatrixTest)
 {
-    Matrix identity = Matrix::identity (3, 3); // Assuming identity method is implemented
+    Matrix identity = Matrix::identity (3, 3);
     EXPECT_EQ (identity.at (0, 0), 1);
     EXPECT_EQ (identity.at (1, 1), 1);
     EXPECT_EQ (identity.at (2, 2), 1);
@@ -289,6 +290,7 @@ TEST (MatrixTest, IdentityMatrixTest)
     EXPECT_EQ (identity.at (1, 2), 0);
     EXPECT_EQ (identity.at (2, 1), 0);
 }
+
 // Main function to run all tests
 int main (int argc, char** argv)
 {

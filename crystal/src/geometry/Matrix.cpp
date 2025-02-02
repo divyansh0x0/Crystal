@@ -1,12 +1,9 @@
-#include "crystal/geometry/Matrix.h"
-#include <cmath>
-#include <iostream>
+#include "crystal/geometry/Matrix.hpp"
 #include <limits>
-#include <stdexcept>
-#include "crystal/core/Logger.h"
 
 
 #define SIZE_OF_ARRAY(x) (*(&x + 1) - x)
+
 namespace crystal::geometry
 {
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -22,6 +19,7 @@ namespace crystal::geometry
                 m_arr[i][j] = other.m_arr[i][j];
         }
     }
+
     Matrix::Matrix (float** arr)
     {
         if (arr == nullptr)
@@ -43,8 +41,10 @@ namespace crystal::geometry
                 m_arr[i][j] = arr[i][j];
         }
     }
+
     Matrix::Matrix (const std::initializer_list<std::initializer_list<float>> arr)
-        : num_rows (arr.size ()), num_cols (arr.begin ()->size ())
+        : num_rows (arr.size ()),
+          num_cols (arr.begin ()->size ())
     {
         if (num_cols == 0 || num_rows == 0)
         {
@@ -78,6 +78,7 @@ namespace crystal::geometry
                 m_arr[i][j] = val;
         }
     }
+
     /////////////////////////////////////////////////////////////////
     //                       Destructors
     /////////////////////////////////////////////////////////////////
@@ -89,6 +90,7 @@ namespace crystal::geometry
         }
         delete[] m_arr;
     }
+
     /////////////////////////////////////////////////////////////////
     //                       Private Methods
     /////////////////////////////////////////////////////////////////
@@ -101,6 +103,7 @@ namespace crystal::geometry
             m_arr[i] = new float[num_cols];
         }
     }
+
     /////////////////////////////////////////////////////////////////
     //                       Static Methods
     /////////////////////////////////////////////////////////////////
@@ -125,7 +128,6 @@ namespace crystal::geometry
         return result;
     }
 
-
     Matrix Matrix::null (size_t rows, size_t cols)
     {
         if (rows != cols || rows == 0 || cols == 0)
@@ -143,6 +145,7 @@ namespace crystal::geometry
     {
         return (const float**) m_arr;
     }
+
     Matrix Matrix::operator* (const Matrix& other) const
     {
         if (num_cols != other.num_rows || m_arr == nullptr || other.m_arr == nullptr)
@@ -167,11 +170,13 @@ namespace crystal::geometry
         // logger::Success("Matrix: " + std::string(result.begin(), result.end()));
         return result;
     }
+
     Matrix& Matrix::operator*= (const Matrix& other)
     {
         *this = *this * other;
         return *this;
     }
+
     // Scalar multiply
     Matrix Matrix::operator* (const float& scalar) const
     {
@@ -187,22 +192,26 @@ namespace crystal::geometry
         }
         return Matrix (result);
     }
+
     Matrix& Matrix::operator*= (const float& scalar)
     {
         *this = *this * scalar;
         return *this;
     }
+
     // Scalar divison
     Matrix Matrix::operator/ (const float& scalar) const
     {
         if (scalar == 0) return Matrix (num_rows, num_cols, std::numeric_limits<float>::quiet_NaN ());
         return *this * (1 / scalar);
     }
+
     Matrix& Matrix::operator/= (const float& scalar)
     {
         *this = *this / scalar;
         return *this;
     }
+
     // Addition
     Matrix Matrix::operator+ (const Matrix& other) const
     {
@@ -218,12 +227,14 @@ namespace crystal::geometry
         }
         return result;
     }
+
     Matrix& Matrix::operator+= (const Matrix& other)
     {
         if (num_rows != other.num_rows || num_cols != other.num_cols) return invalid_matrix;
         *this = *this + other;
         return *this;
     }
+
     // Subtraction
     Matrix Matrix::operator- (const Matrix& other) const
     {
@@ -239,11 +250,13 @@ namespace crystal::geometry
         }
         return result;
     }
+
     Matrix& Matrix::operator-= (const Matrix& other)
     {
         *this = *this - other;
         return *this;
     }
+
     // Power
     Matrix Matrix::operator^ (const uint32_t& power) const
     {
@@ -263,11 +276,13 @@ namespace crystal::geometry
 
         return result;
     }
+
     Matrix& Matrix::operator^= (const uint32_t& power)
     {
         *this = *this ^ power;
         return *this;
     }
+
     // Equality
     bool Matrix::operator== (const Matrix& other) const
     {
@@ -288,11 +303,13 @@ namespace crystal::geometry
         }
         return true;
     }
+
     // Inequality
     bool Matrix::operator!= (const Matrix& other) const
     {
         return !(*this == other);
     }
+
     // Copy assignment
     Matrix& Matrix::operator= (const Matrix& other)
     {
@@ -308,6 +325,7 @@ namespace crystal::geometry
 
         return *this;
     }
+
     void Matrix::put (size_t row, size_t col, float value)
     {
         if (m_arr == nullptr || row >= num_rows || col >= num_cols || row < 0 || col < 0)
@@ -316,6 +334,7 @@ namespace crystal::geometry
         }
         m_arr[row][col] = value;
     }
+
     // at
     float Matrix::at (size_t row, size_t col) const
     {
@@ -327,6 +346,7 @@ namespace crystal::geometry
 
         return m_arr[row][col];
     }
+
     // Transpose
     Matrix Matrix::getTranspose () const
     {
@@ -341,6 +361,7 @@ namespace crystal::geometry
         }
         return result;
     }
+
     // Determinant
     float Matrix::getDeterminant () const
     {
@@ -381,6 +402,7 @@ namespace crystal::geometry
         }
         return result;
     }
+
     // Cofactor
     float Matrix::getCofactor (size_t i, size_t j) const
     {
@@ -396,6 +418,7 @@ namespace crystal::geometry
         Matrix subMatrix = getSubMatrix (i, j);
         return subMatrix.getDeterminant () * ((i + j) % 2 == 0 ? 1 : -1);
     }
+
     // Cofactor
     Matrix Matrix::getCofactorMatrix () const
     {
@@ -417,6 +440,7 @@ namespace crystal::geometry
         if (m_arr == nullptr) return *this;
         return getCofactorMatrix ().getTranspose ();
     }
+
     // Inverse
     Matrix Matrix::getInverse () const
     {
@@ -441,14 +465,17 @@ namespace crystal::geometry
         }
         return result;
     }
+
     size_t Matrix::getNumRows ()
     {
         return num_rows;
     }
+
     size_t Matrix::getNumCols ()
     {
         return num_cols;
     }
+
     // Non-member operator* for scalar multiplication
     Matrix operator* (double scalar, const Matrix& matrix)
     {

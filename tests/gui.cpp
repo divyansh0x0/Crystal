@@ -1,12 +1,12 @@
 #include <gtest/gtest.h>
-#include "crystal/core/Window.h"
-#include "crystal/graphics/Color.h"
-#include "crystal/graphics/Graphics.h"
-#include "crystal/graphics/Renderer.h"
-#include "crystal/layout/Size.h"
+#include "crystal/core/Window.hpp"
+#include "crystal/graphics/Color.hpp"
+#include "crystal/graphics/Graphics.hpp"
+#include "crystal/layout/Size.hpp"
 
 
 using namespace crystal;
+
 int main (int argc, char** argv)
 {
     ::testing::InitGoogleTest (&argc, argv);
@@ -15,8 +15,7 @@ int main (int argc, char** argv)
 
 TEST (GUI, WindowCreation)
 {
-    graphics::Renderer* gl_rednerer = graphics::CreateRenderer (graphics::API::OpenGL);
-    Window              window ("Test window", layout::Size (600, 420), Color (255, 255, 255), gl_rednerer);
+    Window window ("Test window", layout::Size (600, 420), Color (22,22,22,1.0f), graphics::API::OpenGL);
     EXPECT_EQ (window.isVisible (), false) << "Expected window to be not visible before creation";
     window.show ();
     EXPECT_EQ (window.isVisible (), false) << "Expected window to be not visible after being destroyed ";

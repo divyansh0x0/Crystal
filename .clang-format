@@ -1,9 +1,8 @@
 Language: Cpp
 AccessModifierOffset: -2
 AlignAfterOpenBracket: true
-
+PenaltyBreakAssignment: 100
 AlignArrayOfStructures: Left
-
 
 ColumnLimit: 120
 
@@ -30,18 +29,23 @@ AlignOperands: Align
 AlignTrailingComments:
   Kind: Always
   OverEmptyLines: 1
+SpaceBeforeParensOptions:
+  AfterFunctionDeclarationName: false
+  AfterFunctionDefinitionName: false
 
-AllowAllArgumentsOnNextLine: true
+SeparateDefinitionBlocks: Always
+AllowAllArgumentsOnNextLine: false
 AllowShortBlocksOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: Inline
 AllowShortIfStatementsOnASingleLine: WithoutElse
-AllowShortLambdasOnASingleLine: Inline
+AllowShortLambdasOnASingleLine: Empty
 AllowShortLoopsOnASingleLine: false
 AlwaysBreakBeforeMultilineStrings: false
 
 BinPackArguments: true
 BinPackParameters: false
+PackConstructorInitializers: CurrentLine
 
 BraceWrapping:
   AfterClass: true
@@ -52,9 +56,10 @@ BraceWrapping:
   IndentBraces: true
   SplitEmptyFunction: true
 
+# breaks
+BreakBeforeTernaryOperators: true
 BreakBeforeBraces: Allman
 BreakBeforeBinaryOperators: NonAssignment
-BreakBeforeTernaryOperators: true
 BreakStringLiterals: true
 BreakInheritanceList: AfterComma
 BreakConstructorInitializersBeforeComma: false
@@ -63,13 +68,13 @@ ContinuationIndentWidth: 4
 ConstructorInitializerIndentWidth: 4
 
 IncludeCategories:
-  - Regex: '^<.*>'
+  - Regex: "^<.*>"
     Priority: 1
   - Regex: '^"(crystal/.*)"'
     Priority: 2
-  - Regex: '^.*'
+  - Regex: "^.*"
     Priority: 3
-IncludeIsMainRegex: '$'
+IncludeIsMainRegex: "$"
 IndentCaseLabels: true
 IndentWidth: 4
 IndentWrappedFunctionNames: true
@@ -83,7 +88,6 @@ ReflowComments: true
 SpaceAfterCStyleCast: true
 SpaceAfterTemplateKeyword: true
 SpaceBeforeAssignmentOperators: true
-SpaceBeforeParens: Always
 SpacesInAngles: false
 SpacesInContainerLiterals: true
 SpacesInParentheses: false
