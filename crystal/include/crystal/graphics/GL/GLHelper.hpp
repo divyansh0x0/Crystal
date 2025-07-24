@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #define GL_CALL(x)                                                         \
     {                                                                      \

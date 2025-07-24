@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5.0)
+cmake_minimum_required(VERSION 3.31.0)
 project(crystal_tests VERSION 0.1.0 LANGUAGES C CXX)
 
 set(ALL_TEST_FILES matrix.h vector.h)

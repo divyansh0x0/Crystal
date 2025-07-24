@@ -65,9 +65,9 @@ namespace crystal::geometry
         }
     }
 
-    Matrix::Matrix (size_t row, size_t col, float val) : num_rows (row), num_cols (col)
+    Matrix::Matrix (const size_t row, const size_t col, const float val) : num_rows (row), num_cols (col)
     {
-        if (num_rows == 0 || num_rows == 0)
+        if (num_rows == 0 || num_cols == 0)
         {
             return;
         }

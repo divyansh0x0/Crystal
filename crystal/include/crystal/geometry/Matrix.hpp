@@ -1,5 +1,5 @@
 #pragma once
-#include <inttypes.h>
+#include <cstdint>
 #include <string>
 namespace crystal::geometry
 {
@@ -7,7 +7,7 @@ namespace crystal::geometry
     {
         public:
             Matrix (const Matrix& other);
-            Matrix (float** arr);
+            explicit Matrix (float** arr);
             Matrix (std::initializer_list<std::initializer_list<float>> arr);
 
             explicit Matrix (size_t row, size_t col, float val);

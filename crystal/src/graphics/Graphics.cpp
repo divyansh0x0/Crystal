@@ -3,17 +3,18 @@
 
 namespace crystal::graphics
 {
-    Renderer* CreateRenderer (API api)
+    Renderer* CreateRenderer(API api)
     {
         switch (api)
         {
 
             case API::OpenGL:
+                return new GLRenderer();
             case API::Vulkan:
             case API::DirectX:
-                return new GLRenderer ();
+            default:
+                return nullptr;
         }
-        return nullptr;
     }
 
     // /*****************************************************************************/

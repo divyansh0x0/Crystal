@@ -8,6 +8,8 @@
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
+        "CMAKE_C_COMPILER":"gcc",
+        "CMAKE_CXX_COMPILER":"g++",
         "CMAKE_MAKE_PROGRAM": "${sourceDir}/ninja",
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install/${presetName}"
@@ -20,6 +22,8 @@
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
+        "CMAKE_C_COMPILER":"gcc",
+        "CMAKE_CXX_COMPILER":"g++",
         "CMAKE_MAKE_PROGRAM": "${sourceDir}/ninja",
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install/${presetName}"

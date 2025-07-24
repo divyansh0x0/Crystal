@@ -23,13 +23,11 @@ static unsigned int CompileShader (unsigned int type, const char* src_code)
             logger::Error ("OpenGL", (type == GL_VERTEX_SHADER ? std::string ("Vertex") : std::string ("Fragment"))
                                          + " shader compilation failed in following src code because of " + message);
             logger::Error ("OpenGL", src_code);
+            return -1;
 
     }
-    else
-    {
-        logger::Success ("OpenGL", (type == GL_VERTEX_SHADER ? std::string ("Vertex") : std::string ("Fragment"))
+    logger::Success ("OpenGL", (type == GL_VERTEX_SHADER ? std::string ("Vertex") : std::string ("Fragment"))
                                        + "shader compiled");
-    }
     return id;
 }
 
@@ -39,9 +37,9 @@ namespace crystal::graphics
 
     GLShader::GLShader (const char* vertex_shader_code, const char* fragment_shader_code)
     {
-        unsigned int program = glCreateProgram ();
-        unsigned int vs      = CompileShader (GL_VERTEX_SHADER, vertex_shader_code);
-        unsigned int fs      = CompileShader (GL_FRAGMENT_SHADER, fragment_shader_code);
+        const unsigned int program = glCreateProgram();
+        const unsigned int vs      = CompileShader(GL_VERTEX_SHADER, vertex_shader_code);
+        const unsigned int fs      = CompileShader (GL_FRAGMENT_SHADER, fragment_shader_code);
         GL_CALL (glAttachShader (program, vs));
         GL_CALL (glAttachShader (program, fs));
         GL_CALL (glLinkProgram (program));

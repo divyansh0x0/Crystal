@@ -2,7 +2,7 @@
 
 namespace crystal::graphics
 {
-    class GLShader : public Shader
+    class GLShader final : public Shader
     {
         private:
             unsigned int m_ID;
@@ -13,6 +13,6 @@ namespace crystal::graphics
             void activate () override;
             void destroy () override;
 
-            unsigned int getID () { return m_ID; }
+            [[nodiscard]] unsigned int getID () const { return m_ID; }
     };
 } // namespace crystal::graphics

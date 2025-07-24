@@ -7,6 +7,7 @@ std::string GetShaderCode(const char *path);
 class Shader
 {
     public:
+        virtual ~Shader()       = default;
         virtual void activate() = 0;
         virtual void destroy()  = 0;
 };

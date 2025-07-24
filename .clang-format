@@ -35,7 +35,7 @@ SpaceBeforeParensOptions:
 
 SeparateDefinitionBlocks: Always
 AllowAllArgumentsOnNextLine: false
-AllowShortBlocksOnASingleLine: false
+AllowShortBlocksOnASingleLine: Empty
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: Inline
 AllowShortIfStatementsOnASingleLine: WithoutElse
@@ -44,7 +44,7 @@ AllowShortLoopsOnASingleLine: false
 AlwaysBreakBeforeMultilineStrings: false
 
 BinPackArguments: true
-BinPackParameters: false
+BinPackParameters: OnePerLine
 PackConstructorInitializers: CurrentLine
 
 BraceWrapping:
@@ -84,7 +84,6 @@ MaxEmptyLinesToKeep: 2
 NamespaceIndentation: All
 
 PointerAlignment: Left
-ReflowComments: true
 SpaceAfterCStyleCast: true
 SpaceAfterTemplateKeyword: true
 SpaceBeforeAssignmentOperators: true
@@ -92,6 +91,6 @@ SpacesInAngles: false
 SpacesInContainerLiterals: true
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
-Standard: Cpp11
+Standard: c++11
 TabWidth: 4
 UseTab: Never
