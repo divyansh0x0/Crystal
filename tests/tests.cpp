@@ -1,9 +1,9 @@
 #include <cmath>
 #include <gtest/gtest.h>
-#include "crystal/geometry/Matrix.hpp" // Include the appropriate header for the Matrix class
+#include "krystal/geometry/Matrix.hpp" // Include the appropriate header for the Matrix class
 
 
-using namespace crystal::geometry;
+using namespace ktl::geometry;
 
 // Test the constructors
 TEST (MatrixTest, EqualityTest)

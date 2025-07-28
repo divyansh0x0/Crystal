@@ -32,7 +32,7 @@
   ],
   "testPresets": [
     {
-      "name": "Test Crystal",
+      "name": "Test Krystal",
       "description": "",
       "displayName": "",
       "configurePreset": "debug"

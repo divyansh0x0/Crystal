@@ -1,0 +1,69 @@
+cmake_minimum_required(VERSION 3.31.0)
+project(krystal VERSION 0.1.0 LANGUAGES C CXX)
+
+##################################################
+#Setting up build options
+##################################################
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+
+set(CRYSTAL_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
+
+# set source files based on folders
+set(CRYSTAL_CORE_SRC
+        src/krystal/core/Window.cpp
+        src/krystal/core/Logger.cpp
+        src/krystal/core/Engine.cpp)
+set(CRYSTAL_GEOMETRY_SRC
+        src/krystal/geometry/Matrix.cpp
+        src/krystal/geometry/Vector3.cpp
+        src/krystal/layout/Size.cpp)
+set(CRYSTAL_UI_SRC)
+
+set(CRYSTAL_GRAPHICS_SRC
+        src/krystal/graphics/Color.cpp
+        src/krystal/graphics/Graphics.cpp
+        src/krystal/graphics/Shader.cpp
+        src/krystal/graphics/VertexArray.cpp
+        src/krystal/graphics/Renderer.cpp
+        src/krystal/graphics/GraphicsFactory.cpp)
+set(CRYSTAL_GL_GRAPHICS_SRC
+        src/platform/gl/Renderer.cpp
+        src/platform/gl/Helper.cpp
+        src/platform/gl/Buffer.cpp
+        src/platform/gl/Shader.cpp)
+
+# reference all source files in one variable
+set(CRYSTAL_SOURCE_FILES
+        ${CRYSTAL_CORE_SRC}
+        ${CRYSTAL_GEOMETRY_SRC}
+        ${CRYSTAL_UI_SRC}
+        ${CRYSTAL_GRAPHICS_SRC}
+        ${CRYSTAL_GL_GRAPHICS_SRC}
+        src/platform/gl/Buffer.cpp
+)
+
+# set include directories
+set(CRYSTAL_INCLUDE_DIRECTORIES ${CRYSTAL_DIRECTORY}/include)
+
+
+add_subdirectory(external)
+find_package(OpenGL REQUIRED)
+
+
+# build library
+add_library(krystal STATIC ${CRYSTAL_SOURCE_FILES})
+target_compile_options(krystal PRIVATE
+        "-pedantic"
+        "-Wundef"
+        "-Wpointer-arith"
+        "-Wwrite-strings"
+        "-Wswitch-default"
+        "-Wswitch-enum")
+
+# include
+target_include_directories(krystal PUBLIC ${CRYSTAL_INCLUDE_DIRECTORIES})
+
+# linking
+target_link_libraries(krystal PRIVATE glfw OpenGL::GL glad dwmapi)

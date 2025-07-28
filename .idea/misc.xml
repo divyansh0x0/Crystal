@@ -6,10 +6,14 @@
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
   <component name="CidrRootsConfiguration">
     <sourceRoots>
-      <file path="$PROJECT_DIR$/crystal" />
+      <file path="$PROJECT_DIR$/krystal" />
     </sourceRoots>
+    <libraryRoots>
+      <file path="$PROJECT_DIR$/krystal/external/glad/include" />
+      <file path="$PROJECT_DIR$/krystal/external/glfw/include" />
+    </libraryRoots>
     <excludeRoots>
-      <file path="$PROJECT_DIR$/crystal/external" />
+      <file path="$PROJECT_DIR$/krystal/external" />
     </excludeRoots>
   </component>
 </project>

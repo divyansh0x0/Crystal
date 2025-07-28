@@ -2,18 +2,18 @@
   "folders": [
     {
       "name": "src",
-      "path": "crystal/src"
+      "path": "krystal/src"
     },
     {
-      "name": "crystal",
-      "path": "crystal/include/crystal"
+      "name": "krystal",
+      "path": "krystal/include/krystal"
     },
     {
       "name": "tests",
       "path": "tests"
     },
     {
-      "name": "Crystal",
+      "name": "Krystal",
       "path": "."
     }
   ]

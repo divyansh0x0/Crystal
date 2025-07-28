@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.31.0)
-project(crystal VERSION 0.1.0 LANGUAGES C CXX)
+project(krystal VERSION 0.1.0 LANGUAGES C CXX)
 
 # ########################
 # fetch external libraries
@@ -49,12 +49,12 @@ endif()
 # ################################################
 # Subdirectories
 # ################################################
-message("Building crystal with build type: ${CMAKE_BUILD_TYPE}")
+message("Building krystal with build type: ${CMAKE_BUILD_TYPE}")
 
 enable_testing()
 include(CTest)
 
-add_subdirectory(crystal)
+add_subdirectory(krystal)
 add_subdirectory(tests)
 
 

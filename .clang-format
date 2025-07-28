@@ -70,7 +70,7 @@ ConstructorInitializerIndentWidth: 4
 IncludeCategories:
   - Regex: "^<.*>"
     Priority: 1
-  - Regex: '^"(crystal/.*)"'
+  - Regex: '^"(krystal/.*)"'
     Priority: 2
   - Regex: "^.*"
     Priority: 3

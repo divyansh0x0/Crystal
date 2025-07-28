@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
-#include "crystal/geometry/Vector3.hpp"
+#include "krystal/geometry/Vector3.hpp"
 
 
-using namespace crystal::geometry;
+using namespace ktl::geometry;
 
 // Test the constructors
 TEST (VectorTest, Vector_Test)

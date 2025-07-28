@@ -16,7 +16,7 @@ function (create_test name)
     add_executable(${name} ${name}.cpp)
     message("Test executable for " ${name} ".cpp built successfully")
     # we need to link each test separately against google test
-    target_link_libraries(${name} crystal GTest::gtest_main)
+    target_link_libraries(${name} krystal GTest::gtest_main)
 
     # register the test with CTest, so we execute it automatically when running CTest later
     add_test(NAME ${name} COMMAND $<TARGET_FILE:${name}>)
