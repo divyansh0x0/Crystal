@@ -1,1 +1,1 @@
-Windows SDK is required
+A C++ GUI library
